@@ -1,0 +1,32 @@
+\documentclass{article}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{bm}
+\begin{document}
+\begin{algorithm}
+	\renewcommand{\thealgorithm}{}
+	\caption{Particle Swarm Optimization}\label{alg:cap}
+	\begin{algorithmic}
+		\State Set the algorithm's parameters and input the data
+		\State Generate the initial population
+		\State Generate the initial velocity values randomly
+        \State Record the best solution observed thus far $G_{best}$
+		\While{the termination criterion is not met}
+		\For{each particle in the population}
+        \State Record the best position observed by the particle $P_{best,particle}$
+		\EndFor
+		\If{the new best position observed in the process}
+        \State Update $G_{best}$
+		\EndIf
+        \For{each particle in the population}
+        \State Compute the particle's velocity
+        \State Update the particle's position
+		\EndFor
+        \State Update inertia weight parameter
+		\EndWhile
+        \State Report $G_{best}$ as the solution
+	\end{algorithmic}
+
+\end{algorithm}
+
+\end{document}
