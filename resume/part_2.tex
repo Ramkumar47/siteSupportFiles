@@ -1,0 +1,99 @@
+\section{Top project works}
+\begin{enumerate}
+	\item System identification of an airplane using Physics Informed Neural Networks (PINNs)
+		\begin{itemize}
+			\item System identification for the longitudinal dynamics of Hansa airplane was performed in the work.
+			\item A linear aerodynamic model and the dynamics governing equations in wind axis reference frame were implemented.
+			\item Python programming language with Tensorflow library was used in the work. Estimations were performed using both synthetic and experimental data.
+			\item A new PINN architecture, System-Identification PINNs (SI-PINNs) was developed,
+				overcoming limitations faced by existing models in the literature.
+			\item Performance of SI-PINNs was compared with classical methods, and the advantages of SI-PINNs in handling sparse and faulty data were demonstrated.
+			\item SI-PINN is proposed as an alternative to classical methods in the aircraft system identification, and the experimentations can be geared
+				towards sparse but accurate data instead of huge and faulty.
+		\end{itemize}
+
+	\item Development of custom OpenFOAM solver for the wave equation
+		\begin{itemize}
+			\item A custom application named \textit{waveFoam} was developed using OpenFOAM C++ to
+				solve the transient wave equation.
+			\item The solver was developed to handle a maximum of upto 4 dimensional solution field (3 spatial and 1 temporal) and embodied with all features that a basic OpenFOAM application has.
+			\item A custom foam dictionary was made to feed the wave speed property needed by the solver that can access it during execution.
+			\item A new field file \textit{h} was created that records the amplitude of waves in the domain.
+			\item The solution files were saved in FOAM format to post-process directly using ParaView.
+			\item The code was submitted as a tutorial for the blooming programmers in OpenFOAM community. \url{https://github.com/UnnamedMoose/BasicOpenFOAMProgrammingTutorials}
+		\end{itemize}
+
+	\item Development of incompressible single-phase massless particle tracking application in OpenFOAM
+		\begin{itemize}
+			\item There are few particle tracking applications in OpenFOAM v1806 but none of them are massless,
+				hence this application was developed.
+			\item The application tracks particles by displacing them with integration of fluid velocity
+				over a given timestep. The particles are represented as points in 3D domain.
+			\item A new foam dictionary, \textit{particleTracksDict} was developed that stores the
+				initial position of particles, which are defined using either a list of coordinates or
+				by defining the name of a boundary.
+			\item Back or forward tracing will be determined by the application based on the specified
+				inlet or outlet boundary.
+			\item The application writes residence time and distance travelled by each particle to a
+				post-processing file and the path of each particle is exported as vtk file for ease
+				of visualization in ParaView.
+			\item The work was submitted as a tutorial to the OpenFOAM community.\url{https://github.com/UnnamedMoose/BasicOpenFOAMProgrammingTutorials}
+		\end{itemize}
+	\item Numerical analysis of a laminar incompressible viscous flow over flat plate and the driven cavity flow using
+		Lattice Boltzmann Method (LBM)
+		\begin{itemize}
+			\item Flow simulation was carried using air at standard condition and for Reynolds numbers of 10 and 1000
+				for the flat plate and cavity flow, respectively.
+			\item The Lattice Boltzmann Method (LBM), a mesoscopic approach was implemented in the work.
+			\item The code was developed on MATLAB and Python languages.
+			\item Validation was performed using Blasius solution for flat plate and the benchmark results from the literature for the cavity flow.
+			\item The performance of LBM was compared to the finite difference method (FDM) for both the problems.
+		\end{itemize}
+
+	\item Development of a two-phase fluid flow solver for rectangular structured domains
+		\begin{itemize}
+			\item The solver was developed using staggered-finite volume method using FORTRAN-2008 for
+				computation, NetCDF for data handling and Python 3.6 for post-processing.
+			\item Immersed interface model and the Eulerian Volume of Fluid (VOF) method were
+				implemented for the two phase flow in the work.
+			\item Continuum surface force model was implemented to include surface tension forces in the computation.
+			\item Pressure correction technique with modified SIMPLE algorithm was used to
+				solve the incompressible governing equations.
+			\item Drop at 0-gravity and the Rayleigh-Taylor instability problems were solved for the validation of the solver.
+		\end{itemize}
+
+	\item Numerical simulation of Poiseuille flow
+		\begin{itemize}
+			\item Axisymmetric Navier-Stokes equations using finite volume method using vorticity-streamfunction formulation were used in the work.
+			\item CFD code was developed using MATLAB and Python. A simple GUI was developed using Python language.
+			\item Validation was performed using Hagen-Poiseuille equation and comparing velocity profile with
+				theoretical variation.
+		\end{itemize}
+\end{enumerate}
+
+%------------------------------------------------------------------------------
+\section{Github page}
+This page contais some of my code works
+\url{https://github.com/Ramkumar47}
+
+%------------------------------------------------------------------------------
+\section{References}
+\begin{itemize}
+	\item Dr. Madhukar M. Rao, Technical director, ACRi Info Tech, Bangalore. \href{mailto: madhukar.rao@acricfd.com}{madhukar.rao@acricfd.com}
+	\item Dr. Devendra Prakash Ghate, Assistant Professor, Indian Institute of Space Science and Technology. \href{mailto: devendra.ghate@iist.ac.in}{devendra.ghate@iist.ac.in}
+\end{itemize}
+
+%------------------------------------------------------------------------------
+\section{Declaration}
+I, hereby, declare that the above given information is true to the best of my knowledge.
+\vspace{2cm}
+
+
+
+\begin{minipage}[t]{0.7\linewidth}
+	Date:
+\end{minipage}
+\begin{minipage}[t]{0.5\linewidth}
+	signature:
+	(Ramkumar S)
+\end{minipage}
