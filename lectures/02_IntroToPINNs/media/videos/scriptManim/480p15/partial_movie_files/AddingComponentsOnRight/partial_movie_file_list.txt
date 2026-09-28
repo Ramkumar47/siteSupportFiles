@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/AddingComponentsOnRight/3684191355_4222706284_585335411.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/AddingComponentsOnRight/1360277161_3832653401_1761160878.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/AddingComponentsOnRight/1360277161_3688467873_1156950746.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/AddingComponentsOnRight/1360277161_1432596116_3380070195.mp4'
