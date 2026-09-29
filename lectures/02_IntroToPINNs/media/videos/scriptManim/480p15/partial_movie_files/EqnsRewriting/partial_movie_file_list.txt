@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/3684191355_4048643204_3756229894.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/1360277161_1432596116_2095223995.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/1360277161_2043690432_1607482544.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/1360277161_1432596116_2425240120.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/1360277161_4111105861_3881631939.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRewriting/1360277161_1432596116_2656582516.mp4'

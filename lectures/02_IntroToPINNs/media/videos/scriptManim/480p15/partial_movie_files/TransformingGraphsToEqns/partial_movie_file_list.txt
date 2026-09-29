@@ -1,0 +1,5 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/TransformingGraphsToEqns/3684191355_2846643853_1152869255.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/TransformingGraphsToEqns/1360277161_1432596116_2509170675.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/TransformingGraphsToEqns/1360277161_127883667_1611538386.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/TransformingGraphsToEqns/1360277161_1432596116_2394732021.mp4'

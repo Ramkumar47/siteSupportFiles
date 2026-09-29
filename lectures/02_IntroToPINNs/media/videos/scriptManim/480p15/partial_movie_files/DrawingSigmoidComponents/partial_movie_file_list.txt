@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DrawingSigmoidComponents/3684191355_108303507_2041814473.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DrawingSigmoidComponents/1360277161_2156343111_948221711.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DrawingSigmoidComponents/1360277161_1432596116_1999666130.mp4'

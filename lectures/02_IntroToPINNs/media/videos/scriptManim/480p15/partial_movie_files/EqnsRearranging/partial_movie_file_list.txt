@@ -1,0 +1,4 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRearranging/3684191355_556946328_2025069996.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRearranging/1360277161_2382254447_958724088.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/EqnsRearranging/1360277161_1432596116_1587124253.mp4'
