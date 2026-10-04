@@ -880,5 +880,340 @@ class TheoremIntro2(Scene):
 
         self.wait(1)
 
+class WhyNotSine1(Scene):
+    def construct(self):
+
+        fOfX = MathTex(r"f(x)").scale(1)
+        fOfX.set_color(text_color)
+        fOfX.move_to(LEFT*2.5+UP*0.5).scale(1)
+
+        sumEqn = MathTex(r"\sum_{n=1}^{N} w_n^{(2)} \sigma(w_n^{(1)} x + b_n^{(1)})").scale(1)
+        sumEqn.set_color(text_color).move_to(UP*0.5+RIGHT*1.5)
+
+        approxSymbol = MathTex(r"\approx").scale(1.5).move_to(LEFT*1.5+UP*0.5)
+        approxSymbol.set_color(text_color)
+
+        theoremStatement = Text("Universal Approximation Theorem", font_size=36)
+        theoremStatement.set_color(blue_color)
+        authorName = Text("Cybenko, 1989", font_size=24)
+        authorName.set_color(text_color)
+        authorName.move_to(DOWN*0.5)
+
+        eqnGroup = VGroup(fOfX, sumEqn, approxSymbol).move_to(UP*1.5)
+
+        box = SurroundingRectangle(eqnGroup, color=blue_color, buff=0.2)
+        box.move_to(UP*1.5)
+
+        sigmoidFunction1 = MathTex(r"\sigma(w_n^{(1)}x+b_n^{(1)}) = ").scale(1)
+        sigmoidFunction1.set_color(text_color)
+        sigmoidStatement1 = Text("Sigmoid function ", font_size=24)
+        sigmoidStatement1.set_color(text_color)
+        sigmoidFunction2 = MathTex(r" = \frac{1}{1+e^{-(w_n^{(1)}x+b_n^{(1)})}").scale(1)
+        sigmoidFunction2.set_color(text_color)
+        sigmoidFunction1.move_to(2*DOWN+LEFT*4)
+        sigmoidStatement1.next_to(sigmoidFunction1, RIGHT, buff=0.5)
+        sigmoidFunction2.next_to(sigmoidStatement1, RIGHT, buff=0.5)
+
+        box.move_to(UP*2.0)
+        eqnGroup.move_to(UP*2.0)
+        theoremStatement.move_to(UP*0.5)
+        authorName.move_to(UP*0)
+
+        existingElemGroup = VGroup(eqnGroup,box,theoremStatement,authorName,
+                 sigmoidFunction1, sigmoidStatement1, sigmoidFunction2)
+
+        self.add(existingElemGroup)
+
+        self.play(Unwrite(sigmoidFunction1), Unwrite(sigmoidStatement1), Unwrite(sigmoidFunction2),
+                  Unwrite(theoremStatement), Unwrite(authorName), Uncreate(box), Unwrite(eqnGroup))
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+
+        self.play(Write(text))
+
+        # self.play(box.animate.move_to(UP*2.0), eqnGroup.animate.move_to(UP*2.0),
+        #           theoremStatement.animate.move_to(UP*0.5),
+        #           authorName.animate.move_to(UP*0))
+        # self.play(Write(sigmoidFunction1))
+        # self.play(Write(sigmoidStatement1))
+        # self.play(Write(sigmoidFunction2))
+
+        self.wait(1)
+
+class WhyNotSine2(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+
+        self.add(text)
+
+        label1Dexample = Text("1D case:", font_size=34)
+        label1Dexample.set_color(red_color)
+        label1Dexample.move_to(UP*1.75+LEFT*4.5)
+        label1DmathDef = MathTex(r"x \to y").scale(1)
+        label1DmathDef.set_color(text_color).move_to(UP*1.75)
+
+        fourier1Dlabel = Text("Fourier series:", font_size=28)
+        fourier1Dlabel.set_color(text_color)
+        fourier1Dlabel.move_to(UP*0.5+LEFT*5.5)
+        fourier1DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sin(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        fourier1DmathDef.set_color(text_color).move_to(UP*0.5)
+
+        nn1Dlabel = Text("Neural network:", font_size=28)
+        nn1Dlabel.set_color(text_color)
+        nn1Dlabel.move_to(LEFT*5.5+DOWN*1.5)
+        nn1DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        nn1DmathDef.set_color(text_color).move_to(DOWN*1.5)
+
+        self.play(text.animate.move_to(UP*3.0))
+        self.play(Write(label1Dexample))
+        self.wait(1)
+        self.play(Write(label1DmathDef))
+        self.wait(2)
+        self.play(Write(fourier1Dlabel))
+        self.play(Write(fourier1DmathDef))
+        self.wait(2)
+        self.play(Write(nn1Dlabel))
+        self.play(Write(nn1DmathDef))
+
+        # self.play(box.animate.move_to(UP*2.0), eqnGroup.animate.move_to(UP*2.0),
+        #           theoremStatement.animate.move_to(UP*0.5),
+        #           authorName.animate.move_to(UP*0))
+        # self.play(Write(sigmoidFunction1))
+        # self.play(Write(sigmoidStatement1))
+        # self.play(Write(sigmoidFunction2))
+
+        self.wait(1)
+
+class WhyNotSine3(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+
+        self.add(text)
+
+        label1Dexample = Text("1D case:", font_size=34)
+        label1Dexample.set_color(red_color)
+        label1Dexample.move_to(UP*1.75+LEFT*4.5)
+        label1DmathDef = MathTex(r"x \to y").scale(1)
+        label1DmathDef.set_color(text_color).move_to(UP*1.75)
+
+        fourier1Dlabel = Text("Fourier series:", font_size=28)
+        fourier1Dlabel.set_color(text_color)
+        fourier1Dlabel.move_to(UP*0.5+LEFT*5.5)
+        fourier1DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sin(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        fourier1DmathDef.set_color(text_color).move_to(UP*0.5)
+
+        nn1Dlabel = Text("Neural network:", font_size=28)
+        nn1Dlabel.set_color(text_color)
+        nn1Dlabel.move_to(LEFT*5.5+DOWN*1.5)
+        nn1DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        nn1DmathDef.set_color(text_color).move_to(DOWN*1.5)
+
+        text.move_to(UP*3.0)
+
+        group1D = VGroup(label1Dexample, label1DmathDef, fourier1Dlabel,
+                         fourier1DmathDef, nn1Dlabel, nn1DmathDef)
+
+        self.add(text, group1D)
+
+        label2Dexample = Text("2D case:", font_size=34)
+        label2Dexample.set_color(red_color)
+        label2Dexample.move_to(UP*2.+LEFT*4.5)
+        label2DmathDef = MathTex(r"(x,y) \to z").scale(1)
+        label2DmathDef.set_color(text_color).move_to(UP*2)
+
+        self.play(Unwrite(label1Dexample), Unwrite(label1DmathDef),
+                  Unwrite(fourier1Dlabel), Unwrite(fourier1DmathDef),
+                  Unwrite(nn1Dlabel), Unwrite(nn1DmathDef))
+        self.wait(1)
+
+        self.play(Write(label2Dexample))
+        self.play(Write(label2DmathDef))
+
+        self.wait(1)
+
+class WhyNotSine4(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        label2Dexample = Text("2D case:", font_size=34)
+        label2Dexample.set_color(red_color)
+        label2Dexample.move_to(UP*2.+LEFT*4.5)
+        label2DmathDef = MathTex(r"(x,y) \to z").scale(1)
+        label2DmathDef.set_color(text_color).move_to(UP*2.)
+
+        self.add(label2Dexample, label2DmathDef)
+
+        fourier2Dlabel = Text("Fourier series:", font_size=28)
+        fourier2Dlabel.set_color(text_color)
+        fourier2Dlabel.move_to(UP*0.75+LEFT*5.5)
+        fourier2DmathDef = MathTex(r"f(x,y) \approx  \sum_{m=1}^M\sum_{n=1}^NB_{mn}\sin(\frac{n\pi x}{L_x})\sin(\frac{n\pi y}{L_y})").scale(1)
+        fourier2DmathDef2 = MathTex(r"B_{mn} = \frac{4}{L_xL_y}\int_0^{L_x}\int_0^{L_y}f(x,y)\sin(\frac{m\pi x}{L_x})\sin(\frac{n\pi y}{L_y})dxdy").scale(1)
+        fourier2DmathDef.set_color(text_color).move_to(UP*0.75+RIGHT*0.5)
+        fourier2DmathDef2.set_color(text_color).move_to(DOWN*0.75)
+
+        self.play(Write(fourier2Dlabel))
+        self.play(Write(fourier2DmathDef))
+        self.play(Write(fourier2DmathDef2))
+
+
+        self.wait(1)
+
+class WhyNotSine5(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        label2Dexample = Text("2D case:", font_size=34)
+        label2Dexample.set_color(red_color)
+        label2Dexample.move_to(UP*2.+LEFT*4.5)
+        label2DmathDef = MathTex(r"(x,y) \to z").scale(1)
+        label2DmathDef.set_color(text_color).move_to(UP*2.)
+
+        self.add(label2Dexample, label2DmathDef)
+
+        fourier2Dlabel = Text("Fourier series:", font_size=28)
+        fourier2Dlabel.set_color(text_color)
+        fourier2Dlabel.move_to(UP*0.75+LEFT*5.5)
+        fourier2DmathDef = MathTex(r"f(x,y) \approx  \sum_{m=1}^M\sum_{n=1}^NB_{mn}\sin(\frac{n\pi x}{L_x})\sin(\frac{n\pi y}{L_y})").scale(1)
+        fourier2DmathDef2 = MathTex(r"B_{mn} = \frac{4}{L_xL_y}\int_0^{L_x}\int_0^{L_y}f(x,y)\sin(\frac{m\pi x}{L_x})\sin(\frac{n\pi y}{L_y})dxdy").scale(1)
+        fourier2DmathDef.set_color(text_color).move_to(UP*0.75+RIGHT*0.5)
+        fourier2DmathDef2.set_color(text_color).move_to(DOWN*0.75)
+
+        self.add(fourier2Dlabel, fourier2DmathDef, fourier2DmathDef2)
+
+        nn2Dlabel = Text("Neural network:", font_size=28)
+        nn2Dlabel.set_color(text_color)
+        nn2Dlabel.move_to(LEFT*5.5+DOWN*2.5)
+        nn2DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        nn2DmathDef.set_color(text_color).move_to(DOWN*2.5+RIGHT)
+
+        # drawing box around nn2DmathDef
+        box = SurroundingRectangle(nn2DmathDef, color=blue_color, buff=0.2)
+        box.move_to(DOWN*2.5+RIGHT)
+
+        self.play(Write(nn2Dlabel))
+        self.play(Write(nn2DmathDef))
+        self.play(Create(box))
+
+
+        self.wait(1)
+
+class WhyNotSine6(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        label2Dexample = Text("2D case:", font_size=34)
+        label2Dexample.set_color(red_color)
+        label2Dexample.move_to(UP*2.+LEFT*4.5)
+        label2DmathDef = MathTex(r"(x,y) \to z").scale(1)
+        label2DmathDef.set_color(text_color).move_to(UP*2.)
+
+        self.add(label2Dexample, label2DmathDef)
+
+        fourier2Dlabel = Text("Fourier series:", font_size=28)
+        fourier2Dlabel.set_color(text_color)
+        fourier2Dlabel.move_to(UP*0.75+LEFT*5.5)
+        fourier2DmathDef = MathTex(r"f(x,y) \approx  \sum_{m=1}^M\sum_{n=1}^NB_{mn}\sin(\frac{n\pi x}{L_x})\sin(\frac{n\pi y}{L_y})").scale(1)
+        fourier2DmathDef2 = MathTex(r"B_{mn} = \frac{4}{L_xL_y}\int_0^{L_x}\int_0^{L_y}f(x,y)\sin(\frac{m\pi x}{L_x})\sin(\frac{n\pi y}{L_y})dxdy").scale(1)
+        fourier2DmathDef.set_color(text_color).move_to(UP*0.75+RIGHT*0.5)
+        fourier2DmathDef2.set_color(text_color).move_to(DOWN*0.75)
+
+        self.add(fourier2Dlabel, fourier2DmathDef, fourier2DmathDef2)
+
+        nn2Dlabel = Text("Neural network:", font_size=28)
+        nn2Dlabel.set_color(text_color)
+        nn2Dlabel.move_to(LEFT*5.5+DOWN*2.5)
+        nn2DmathDef = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        nn2DmathDef.set_color(text_color).move_to(DOWN*2.5+RIGHT)
+
+        # drawing box around nn2DmathDef
+        box = SurroundingRectangle(nn2DmathDef, color=blue_color, buff=0.2)
+        box.move_to(DOWN*2.5+RIGHT)
+
+        self.add(nn2Dlabel, nn2DmathDef, box)
+
+        self.play(Unwrite(fourier2Dlabel), Unwrite(fourier2DmathDef),
+                  Unwrite(fourier2DmathDef2), Unwrite(label2Dexample),
+                  Unwrite(label2DmathDef), Unwrite(nn2Dlabel),
+                  Unwrite(nn2DmathDef), Uncreate(box))
+
+        HighDimexample = Text("Higher dimensional cases:", font_size=34)
+        HighDimexample.set_color(red_color)
+        HighDimexample.move_to(UP*2.+LEFT*4.0)
+        HighDimText = Text("Fourier series becomes more complex", font_size=28)
+        HighDimText.set_color(text_color).move_to(UP*2.+RIGHT*3)
+
+        self.play(Write(HighDimexample))
+        self.wait(1)
+        self.play(Write(HighDimText))
+
+        self.wait(1)
+
+class WhyNotSine7(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        HighDimexample = Text("Higher dimensional cases:", font_size=34)
+        HighDimexample.set_color(red_color)
+        HighDimexample.move_to(UP*2.+LEFT*4.0)
+        HighDimText = Text("Fourier series becomes more complex", font_size=28)
+        HighDimText.set_color(text_color).move_to(UP*2.+RIGHT*3)
+
+        self.add(HighDimexample, HighDimText)
+
+        NNText = Text("Neural networks can handle higher dimensions easily", font_size=28)
+        NNText.set_color(text_color).move_to(DOWN*1.5)
+
+        NN1DExpression = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        NN1DExpression.set_color(text_color).move_to(UP*0.5+LEFT*1.5)
+        NN2DExpression = MathTex(r"f(x,y) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        NN2DExpression.set_color(text_color).move_to(DOWN*1.+LEFT*0.75)
+        NN3DExpression = MathTex(r"f(x,y,z) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y + w_{n,3}^{(1)}z +b_n^{(1)})").scale(1)
+        NN3DExpression.set_color(text_color).move_to(DOWN*2.5)
+
+        NNEndText = Text("and so on ...", font_size=28)
+        NNEndText.set_color(text_color).move_to(DOWN*3.5)
+
+        self.play(Write(NNText))
+        self.play(NNText.animate.move_to(UP*1.5))
+        self.play(Write(NN1DExpression))
+        self.play(Write(NN2DExpression))
+        self.play(Write(NN3DExpression))
+        self.play(Write(NNEndText))
+
+        self.wait(1)
+
+"""
+1. next, create a diagramatic representation of SLFN for N = 3 and inp (x,y)
+2. then move to vector functions with same 2D input and 3D output,
+    show x,y,z -> u,v,w velocity field example for vector function
+    Transform that vector function expression into NN's vector expression
+    and introduce the math of it.
+3. Then move to multi layer network with that 1D input example
+    """
 
 #==============================================================================
