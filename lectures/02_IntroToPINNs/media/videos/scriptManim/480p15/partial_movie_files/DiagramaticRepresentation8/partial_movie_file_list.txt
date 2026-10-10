@@ -1,0 +1,12 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/2684412425_1626583252_470868406.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_2115352756_1737425540.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_3724442238_489825359.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_3609260943_3824523269.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_1432596116_2811016399.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_3469292939_501408463.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_2760819772_1360121124.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_1432596116_1045410334.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_2151996630_1522140154.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_1191391465_858947530.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation8/660496219_1432596116_1661610592.mp4'

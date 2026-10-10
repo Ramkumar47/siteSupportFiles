@@ -1207,6 +1207,935 @@ class WhyNotSine7(Scene):
 
         self.wait(1)
 
+class DiagramaticRepresentation1(Scene):
+    def construct(self):
+
+        text = Text("Why not use fourier series instead of neural networks?", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        HighDimexample = Text("Higher dimensional cases:", font_size=34)
+        HighDimexample.set_color(red_color)
+        HighDimexample.move_to(UP*2.+LEFT*4.0)
+        HighDimText = Text("Fourier series becomes more complex", font_size=28)
+        HighDimText.set_color(text_color).move_to(UP*2.+RIGHT*3)
+
+        self.add(HighDimexample, HighDimText)
+
+        NNText = Text("Neural networks can handle higher dimensions easily", font_size=28)
+        NNText.set_color(text_color).move_to(DOWN*1.5)
+
+        NN1DExpression = MathTex(r"f(x) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_n^{(1)}x+b_n^{(1)})").scale(1)
+        NN1DExpression.set_color(text_color).move_to(UP*0.5+LEFT*1.5)
+        NN2DExpression = MathTex(r"f(x,y) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        NN2DExpression.set_color(text_color).move_to(DOWN*1.+LEFT*0.75)
+        NN3DExpression = MathTex(r"f(x,y,z) \approx  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y + w_{n,3}^{(1)}z +b_n^{(1)})").scale(1)
+        NN3DExpression.set_color(text_color).move_to(DOWN*2.5)
+
+        NNEndText = Text("and so on ...", font_size=28)
+        NNEndText.set_color(text_color).move_to(DOWN*3.5)
+
+        NNText.move_to(UP*1.5)
+
+        self.add(NNText, NN1DExpression, NN2DExpression, NN3DExpression, NNEndText)
+
+        # unwrite all the text and equations
+        self.play(Unwrite(NNText), Unwrite(NN1DExpression),
+                  Unwrite(NN2DExpression), Unwrite(NN3DExpression),
+                  Unwrite(NNEndText),Unwrite(text), Unwrite(HighDimexample),
+                  Unwrite(HighDimText))
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.play(Write(text))
+
+        self.wait(1)
+
+class DiagramaticRepresentation2(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        text2D = Text("2D expression", font_size=24)
+        text2D.set_color(red_color)
+        text2D.move_to(UP*2.+LEFT*4.0)
+
+        NN2DExpression = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        NN2DExpression.set_color(text_color).move_to(UP*1.+LEFT*0.75)
+
+        self.play(Write(text2D),Write(NN2DExpression))
+
+        self.wait(1)
+
+
+class DiagramaticRepresentation3(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        text2D = Text("2D expression", font_size=24)
+        text2D.set_color(red_color)
+        text2D.move_to(UP*2.+LEFT*4.0)
+
+        NN2DExpression = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  \sum_{n=1}^{N} w_n^{(2)} \sigma(w_{n,1}^{(1)}x + w_{n,2}^{(1)}y +b_n^{(1)})").scale(1)
+        NN2DExpression.set_color(text_color).move_to(UP*1.+LEFT*0.75)
+
+        self.add(text,text2D,NN2DExpression)
+
+        text2Da = Text("Taking N = 3", font_size=24)
+        text2Da.set_color(red_color).move_to(UP*2.+LEFT*4.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+
+        self.play(Transform(text2D,text2Da))
+        self.wait(2)
+        self.play(Transform(NN2DExpression,NN2DExpressionN3))
+
+
+
+        self.wait(1)
+
+class DiagramaticRepresentation4(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        self.add(text)
+
+        text2Da = Text("Taking N = 3", font_size=24)
+        text2Da.set_color(red_color).move_to(UP*2.+LEFT*4.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+
+        self.add(text2Da, NN2DExpressionN3)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        self.play(Unwrite(text2Da))
+        self.play(NN2DExpressionN3.animate.move_to(UP*1.5))
+
+        self.play(Write(inpGroup))
+
+        self.wait(1)
+
+class DiagramaticRepresentation5(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(UP*1.5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        self.add(text,NN2DExpressionN3,inpGroup)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline = Underline(NN2DExpressionN3_1, color=blue_color)
+        underline.stretch_to_fit_width(NN2DExpressionN3_1.get_width()*0.5)
+        underline.shift(RIGHT*1.9)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # adding weights on top of the arrows
+        weight1_1 = MathTex(r"w_{1,1}^{(1)}").scale(0.5).move_to(arrow1_1.get_center()+UP*0.3)
+        weight1_1.set_color(text_color)
+        weight1_2 = MathTex(r"w_{1,2}^{(1)}").scale(0.5).move_to(arrow1_2.get_center()+UP*0.3)
+        weight1_2.set_color(text_color)
+        weight1_3 = MathTex(r"b_1^{(1)}").scale(0.5).move_to(arrow1_3.get_center()+UP*0.3)
+        weight1_3.set_color(text_color)
+        weight1Group = VGroup(weight1_1, weight1_2, weight1_3)
+
+        self.play(Create(underline))
+        self.play(Create(neuron1Circle))
+        self.wait(1)
+        self.play(Create(arrow1Group))
+        self.play(Write(weight1Group))
+
+        self.wait(1)
+
+
+class DiagramaticRepresentation6(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(UP*1.5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline = Underline(NN2DExpressionN3_1, color=blue_color)
+        underline.stretch_to_fit_width(NN2DExpressionN3_1.get_width()*0.5)
+        underline.shift(RIGHT*1.9)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # adding weights on top of the arrows
+        weight1_1 = MathTex(r"w_{1,1}^{(1)}").scale(0.5).move_to(arrow1_1.get_center()+UP*0.3)
+        weight1_1.set_color(text_color)
+        weight1_2 = MathTex(r"w_{1,2}^{(1)}").scale(0.5).move_to(arrow1_2.get_center()+UP*0.3)
+        weight1_2.set_color(text_color)
+        weight1_3 = MathTex(r"b_1^{(1)}").scale(0.5).move_to(arrow1_3.get_center()+UP*0.3)
+        weight1_3.set_color(text_color)
+        weight1Group = VGroup(weight1_1, weight1_2, weight1_3)
+
+        self.add(text,NN2DExpressionN3,inpGroup, underline,
+                 neuron1Circle, arrow1Group, weight1Group)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underlineNew = Underline(NN2DExpressionN3_2, color=blue_color)
+        underlineNew.stretch_to_fit_width(NN2DExpressionN3_2.get_width()*0.7)
+        underlineNew.shift(RIGHT*0.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        # adding weights on top of the arrows
+        weight2_1 = MathTex(r"w_{2,1}^{(1)}").scale(0.5).move_to(arrow2_1.get_center()+UP*0.3)
+        weight2_1.set_color(text_color)
+        weight2_2 = MathTex(r"w_{2,2}^{(1)}").scale(0.5).move_to(arrow2_2.get_center()+UP*0.3)
+        weight2_2.set_color(text_color)
+        weight2_3 = MathTex(r"b_2^{(1)}").scale(0.5).move_to(arrow2_3.get_center()+UP*0.3)
+        weight2_3.set_color(text_color)
+        weight2Group = VGroup(weight2_1, weight2_2, weight2_3)
+
+        self.play(Uncreate(underline))
+        self.play(Create(underlineNew))
+        self.play(Create(neuron2Circle))
+        # reducing opacity of arrow1Group and weight1Group to show that they are not active
+        self.play(arrow1Group.animate.set_opacity(0.2), weight1Group.animate.set_opacity(0.2))
+        self.wait(1)
+        self.play(Create(arrow2Group))
+        self.play(Write(weight2Group))
+
+        self.wait(1)
+
+class DiagramaticRepresentation7(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(UP*1.5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline = Underline(NN2DExpressionN3_2, color=blue_color)
+        underline.stretch_to_fit_width(NN2DExpressionN3_2.get_width()*0.7)
+        underline.shift(RIGHT*0.5)
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # adding weights on top of the arrows
+        weight1_1 = MathTex(r"w_{1,1}^{(1)}").scale(0.5).move_to(arrow1_1.get_center()+UP*0.3)
+        weight1_1.set_color(text_color)
+        weight1_2 = MathTex(r"w_{1,2}^{(1)}").scale(0.5).move_to(arrow1_2.get_center()+UP*0.3)
+        weight1_2.set_color(text_color)
+        weight1_3 = MathTex(r"b_1^{(1)}").scale(0.5).move_to(arrow1_3.get_center()+UP*0.3)
+        weight1_3.set_color(text_color)
+        weight1Group = VGroup(weight1_1, weight1_2, weight1_3)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        # adding weights on top of the arrows
+        weight2_1 = MathTex(r"w_{2,1}^{(1)}").scale(0.5).move_to(arrow2_1.get_center()+UP*0.3)
+        weight2_1.set_color(text_color)
+        weight2_2 = MathTex(r"w_{2,2}^{(1)}").scale(0.5).move_to(arrow2_2.get_center()+UP*0.3)
+        weight2_2.set_color(text_color)
+        weight2_3 = MathTex(r"b_2^{(1)}").scale(0.5).move_to(arrow2_3.get_center()+UP*0.3)
+        weight2_3.set_color(text_color)
+        weight2Group = VGroup(weight2_1, weight2_2, weight2_3)
+
+        arrow1Group.set_opacity(0.2)
+        weight1Group.set_opacity(0.2)
+
+        self.add(text,NN2DExpressionN3,inpGroup, underline,
+                 neuron1Circle, arrow1Group, weight1Group,
+                 arrow2Group,weight2Group,neuron2Circle)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underlineNew = Underline(NN2DExpressionN3_3, color=blue_color)
+        underlineNew.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.7)
+        underlineNew.shift(RIGHT*0.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating arrows from input to the third layer of the NN2DExpressionN3
+        arrow3_1 = Arrow(start=xInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_2 = Arrow(start=yInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_3 = Arrow(start=cInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3Group = VGroup(arrow3_1, arrow3_2, arrow3_3)
+
+        # creating weights on top of the arrows
+        weight3_1 = MathTex(r"w_{3,1}^{(1)}").scale(0.5).move_to(arrow3_1.get_center()+UP*0.3)
+        weight3_1.set_color(text_color)
+        weight3_2 = MathTex(r"w_{3,2}^{(1)}").scale(0.5).move_to(arrow3_2.get_center()+UP*0.3)
+        weight3_2.set_color(text_color)
+        weight3_3 = MathTex(r"b_3^{(1)}").scale(0.5).move_to(arrow3_3.get_center()+UP*0.3)
+        weight3_3.set_color(text_color)
+        weight3Group = VGroup(weight3_1, weight3_2, weight3_3)
+
+        self.play(Uncreate(underline))
+        self.play(Create(underlineNew))
+        self.play(Create(neuron3Circle))
+        # reducing opacity of arrow1Group and weight1Group to show that they are not active
+        self.play(arrow2Group.animate.set_opacity(0.2), weight2Group.animate.set_opacity(0.2))
+        self.wait(1)
+        self.play(Create(arrow3Group))
+        self.play(Write(weight3Group))
+
+        self.wait(1)
+
+class DiagramaticRepresentation8(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(UP*1.5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline = Underline(NN2DExpressionN3_3, color=blue_color)
+        underline.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.7)
+        underline.shift(RIGHT*0.5)
+
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # adding weights on top of the arrows
+        weight1_1 = MathTex(r"w_{1,1}^{(1)}").scale(0.5).move_to(arrow1_1.get_center()+UP*0.3)
+        weight1_1.set_color(text_color)
+        weight1_2 = MathTex(r"w_{1,2}^{(1)}").scale(0.5).move_to(arrow1_2.get_center()+UP*0.3)
+        weight1_2.set_color(text_color)
+        weight1_3 = MathTex(r"b_1^{(1)}").scale(0.5).move_to(arrow1_3.get_center()+UP*0.3)
+        weight1_3.set_color(text_color)
+        weight1Group = VGroup(weight1_1, weight1_2, weight1_3)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        # adding weights on top of the arrows
+        weight2_1 = MathTex(r"w_{2,1}^{(1)}").scale(0.5).move_to(arrow2_1.get_center()+UP*0.3)
+        weight2_1.set_color(text_color)
+        weight2_2 = MathTex(r"w_{2,2}^{(1)}").scale(0.5).move_to(arrow2_2.get_center()+UP*0.3)
+        weight2_2.set_color(text_color)
+        weight2_3 = MathTex(r"b_2^{(1)}").scale(0.5).move_to(arrow2_3.get_center()+UP*0.3)
+        weight2_3.set_color(text_color)
+        weight2Group = VGroup(weight2_1, weight2_2, weight2_3)
+
+        arrow1Group.set_opacity(0.2)
+        weight1Group.set_opacity(0.2)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating arrows from input to the third layer of the NN2DExpressionN3
+        arrow3_1 = Arrow(start=xInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_2 = Arrow(start=yInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_3 = Arrow(start=cInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3Group = VGroup(arrow3_1, arrow3_2, arrow3_3)
+
+        # creating weights on top of the arrows
+        weight3_1 = MathTex(r"w_{3,1}^{(1)}").scale(0.5).move_to(arrow3_1.get_center()+UP*0.3)
+        weight3_1.set_color(text_color)
+        weight3_2 = MathTex(r"w_{3,2}^{(1)}").scale(0.5).move_to(arrow3_2.get_center()+UP*0.3)
+        weight3_2.set_color(text_color)
+        weight3_3 = MathTex(r"b_3^{(1)}").scale(0.5).move_to(arrow3_3.get_center()+UP*0.3)
+        weight3_3.set_color(text_color)
+        weight3Group = VGroup(weight3_1, weight3_2, weight3_3)
+
+        arrow2Group.set_opacity(0.2)
+        weight2Group.set_opacity(0.2)
+
+        self.add(text,NN2DExpressionN3,inpGroup, underline,
+                 neuron1Circle, arrow1Group, weight1Group,
+                 arrow2Group,weight2Group,neuron2Circle,
+                 arrow3Group,weight3Group,neuron3Circle)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline1 = Underline(NN2DExpressionN3_1, color=blue_color)
+        underline1.stretch_to_fit_width(NN2DExpressionN3_1.get_width()*0.1)
+        underline1.shift(LEFT*0.4)
+        underline2 = Underline(NN2DExpressionN3_2, color=blue_color)
+        underline2.stretch_to_fit_width(NN2DExpressionN3_2.get_width()*0.1)
+        underline2.shift(LEFT*1.7)
+        underline3 = Underline(NN2DExpressionN3_3, color=blue_color)
+        underline3.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.1)
+        underline3.shift(LEFT*1.7)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing arrows from the first layer neurons to the output layer neuron
+        arrow4_1 = Arrow(start=neuron1Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_2 = Arrow(start=neuron2Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_3 = Arrow(start=neuron3Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4Group = VGroup(arrow4_1, arrow4_2, arrow4_3)
+
+        # adding weights on top of the arrows
+        weight4_1 = MathTex(r"w_{1}^{(2)}").scale(0.5).move_to(arrow4_1.get_center()+UP*0.3)
+        weight4_1.set_color(text_color)
+        weight4_2 = MathTex(r"w_{2}^{(2)}").scale(0.5).move_to(arrow4_2.get_center()+UP*0.3)
+        weight4_2.set_color(text_color)
+        weight4_3 = MathTex(r"w_{3}^{(2)}").scale(0.5).move_to(arrow4_3.get_center()+UP*0.3)
+        weight4_3.set_color(text_color)
+        weight4Group = VGroup(weight4_1, weight4_2, weight4_3)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        self.play(Uncreate(underline))
+        self.play(Create(underline1), Create(underline2), Create(underline3))
+        self.play(Create(neuron4Circle))
+        # reducing opacity of arrow1Group and weight1Group to show that they are not active
+        self.play(arrow3Group.animate.set_opacity(0.2), weight3Group.animate.set_opacity(0.2))
+        self.wait(1)
+        self.play(Create(arrow4Group))
+        self.play(Write(weight4Group))
+        self.wait(1)
+        self.play(Create(arrow5))
+        self.play(Write(outputVar))
+
+        self.wait(1)
+
+class DiagramaticRepresentation9(Scene):
+    def construct(self):
+
+        text = Text("Diagramatic representation", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_1^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_2^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_3^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(UP*1.5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline = Underline(NN2DExpressionN3_3, color=blue_color)
+        underline.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.7)
+        underline.shift(RIGHT*0.5)
+
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # adding weights on top of the arrows
+        weight1_1 = MathTex(r"w_{1,1}^{(1)}").scale(0.5).move_to(arrow1_1.get_center()+UP*0.3)
+        weight1_1.set_color(text_color)
+        weight1_2 = MathTex(r"w_{1,2}^{(1)}").scale(0.5).move_to(arrow1_2.get_center()+UP*0.3)
+        weight1_2.set_color(text_color)
+        weight1_3 = MathTex(r"b_1^{(1)}").scale(0.5).move_to(arrow1_3.get_center()+UP*0.3)
+        weight1_3.set_color(text_color)
+        weight1Group = VGroup(weight1_1, weight1_2, weight1_3)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        # adding weights on top of the arrows
+        weight2_1 = MathTex(r"w_{2,1}^{(1)}").scale(0.5).move_to(arrow2_1.get_center()+UP*0.3)
+        weight2_1.set_color(text_color)
+        weight2_2 = MathTex(r"w_{2,2}^{(1)}").scale(0.5).move_to(arrow2_2.get_center()+UP*0.3)
+        weight2_2.set_color(text_color)
+        weight2_3 = MathTex(r"b_2^{(1)}").scale(0.5).move_to(arrow2_3.get_center()+UP*0.3)
+        weight2_3.set_color(text_color)
+        weight2Group = VGroup(weight2_1, weight2_2, weight2_3)
+
+        arrow1Group.set_opacity(0.2)
+        weight1Group.set_opacity(0.2)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating arrows from input to the third layer of the NN2DExpressionN3
+        arrow3_1 = Arrow(start=xInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_2 = Arrow(start=yInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_3 = Arrow(start=cInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3Group = VGroup(arrow3_1, arrow3_2, arrow3_3)
+
+        # creating weights on top of the arrows
+        weight3_1 = MathTex(r"w_{3,1}^{(1)}").scale(0.5).move_to(arrow3_1.get_center()+UP*0.3)
+        weight3_1.set_color(text_color)
+        weight3_2 = MathTex(r"w_{3,2}^{(1)}").scale(0.5).move_to(arrow3_2.get_center()+UP*0.3)
+        weight3_2.set_color(text_color)
+        weight3_3 = MathTex(r"b_3^{(1)}").scale(0.5).move_to(arrow3_3.get_center()+UP*0.3)
+        weight3_3.set_color(text_color)
+        weight3Group = VGroup(weight3_1, weight3_2, weight3_3)
+
+        arrow2Group.set_opacity(0.2)
+        weight2Group.set_opacity(0.2)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline1 = Underline(NN2DExpressionN3_1, color=blue_color)
+        underline1.stretch_to_fit_width(NN2DExpressionN3_1.get_width()*0.1)
+        underline1.shift(LEFT*0.4)
+        underline2 = Underline(NN2DExpressionN3_2, color=blue_color)
+        underline2.stretch_to_fit_width(NN2DExpressionN3_2.get_width()*0.1)
+        underline2.shift(LEFT*1.7)
+        underline3 = Underline(NN2DExpressionN3_3, color=blue_color)
+        underline3.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.1)
+        underline3.shift(LEFT*1.7)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing arrows from the first layer neurons to the output layer neuron
+        arrow4_1 = Arrow(start=neuron1Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_2 = Arrow(start=neuron2Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_3 = Arrow(start=neuron3Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4Group = VGroup(arrow4_1, arrow4_2, arrow4_3)
+
+        # adding weights on top of the arrows
+        weight4_1 = MathTex(r"w_{1}^{(2)}").scale(0.5).move_to(arrow4_1.get_center()+UP*0.3)
+        weight4_1.set_color(text_color)
+        weight4_2 = MathTex(r"w_{2}^{(2)}").scale(0.5).move_to(arrow4_2.get_center()+UP*0.3)
+        weight4_2.set_color(text_color)
+        weight4_3 = MathTex(r"w_{3}^{(2)}").scale(0.5).move_to(arrow4_3.get_center()+UP*0.3)
+        weight4_3.set_color(text_color)
+        weight4Group = VGroup(weight4_1, weight4_2, weight4_3)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        arrow3Group.set_opacity(0.2)
+        weight3Group.set_opacity(0.2)
+
+        self.add(text,NN2DExpressionN3,inpGroup,
+                 neuron1Circle, arrow1Group, weight1Group,
+                 arrow2Group,weight2Group,neuron2Circle,
+                 arrow3Group,weight3Group,neuron3Circle,
+                 arrow4Group,weight4Group,neuron4Circle,
+                 arrow5,outputVar, underline1, underline2, underline3)
+
+        textNew = Text("Neural Network", font_size=34)
+        textNew.set_color(blue_color)
+        textNew.move_to(UP*3.0)
+
+        self.play(Uncreate(underline1), Uncreate(underline2), Uncreate(underline3),
+                  Unwrite(NN2DExpressionN3_1), Unwrite(NN2DExpressionN3_2), Unwrite(NN2DExpressionN3_3))
+
+        # shifting to the center all the arrows weights and neurons
+        self.play(inpGroup.animate.shift(UP+RIGHT*1.5),
+                  neuron1Circle.animate.shift(UP+RIGHT*1.5),
+                  neuron2Circle.animate.shift(UP+RIGHT*1.5),
+                  neuron3Circle.animate.shift(UP+RIGHT*1.5),
+                  neuron4Circle.animate.shift(UP+RIGHT*1.5),
+                  arrow1Group.animate.shift(UP+RIGHT*1.5).set_opacity(1),
+                  arrow2Group.animate.shift(UP+RIGHT*1.5).set_opacity(1),
+                  arrow3Group.animate.shift(UP+RIGHT*1.5).set_opacity(1),
+                  arrow4Group.animate.shift(UP+RIGHT*1.5),
+                  arrow5.animate.shift(UP+RIGHT*1.5),
+                  weight1Group.animate.shift(UP+RIGHT*1.5),
+                  weight2Group.animate.shift(UP+RIGHT*1.5),
+                  weight3Group.animate.shift(UP+RIGHT*1.5),
+                  weight4Group.animate.shift(UP+RIGHT*1.5).set_opacity(0.2),
+                  outputVar.animate.shift(UP+RIGHT*1.5))
+
+        self.play(Unwrite(text))
+        self.play(Write(textNew))
+
+        self.wait(1)
+
+class DiagramaticRepresentation10(Scene):
+    def construct(self):
+
+        text = Text("Neural Network", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        arrow1Group.set_opacity(1)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating arrows from input to the third layer of the NN2DExpressionN3
+        arrow3_1 = Arrow(start=xInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_2 = Arrow(start=yInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_3 = Arrow(start=cInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3Group = VGroup(arrow3_1, arrow3_2, arrow3_3)
+
+        arrow2Group.set_opacity(1)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing arrows from the first layer neurons to the output layer neuron
+        arrow4_1 = Arrow(start=neuron1Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_2 = Arrow(start=neuron2Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_3 = Arrow(start=neuron3Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4Group = VGroup(arrow4_1, arrow4_2, arrow4_3)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        arrow3Group.set_opacity(1)
+
+        inpGroup.shift(UP+RIGHT*1.5)
+        neuron1Circle.shift(UP+RIGHT*1.5)
+        neuron2Circle.shift(UP+RIGHT*1.5)
+        neuron3Circle.shift(UP+RIGHT*1.5)
+        neuron4Circle.shift(UP+RIGHT*1.5)
+        arrow1Group.shift(UP+RIGHT*1.5)
+        arrow2Group.shift(UP+RIGHT*1.5)
+        arrow3Group.shift(UP+RIGHT*1.5)
+        arrow4Group.shift(UP+RIGHT*1.5)
+        arrow5.shift(UP+RIGHT*1.5)
+        outputVar.shift(UP+RIGHT*1.5)
+
+        self.add(text,inpGroup,
+                 neuron1Circle, arrow1Group,
+                 arrow2Group,neuron2Circle,
+                 arrow3Group,neuron3Circle,
+                 arrow4Group,neuron4Circle,
+                 arrow5,outputVar)
+
+        neuronsText = Text("Neurons", font_size=24)
+        neuronsText.set_color(text_color)
+        neuronsText.move_to(UP*2.0+RIGHT*2.5)
+
+        # arrow from neuronsText to the first layer of the NN2DExpressionN3
+        arrowNeurons = Arrow(start=neuronsText.get_left(), end=neuron1Circle.get_top(),
+                       buff=0.1, color=blue_color, stroke_width=1, tip_length=0.2)
+
+        # layers labels
+        inputLayerText = Text("Input layer", font_size=24)
+        inputLayerText.set_color(text_color)
+        inputLayerText.move_to(inpGroup.get_bottom()+DOWN*0.5+LEFT)
+        hiddenLayerText = Text("Hidden layer", font_size=24)
+        hiddenLayerText.set_color(text_color)
+        hiddenLayerText.move_to(neuron3Circle.get_bottom()+DOWN*0.5)
+        outputLayerText = Text("Output layer", font_size=24)
+        outputLayerText.set_color(text_color)
+        outputLayerText.move_to(neuron4Circle.get_bottom()+DOWN*0.5+RIGHT)
+
+        self.play(Write(neuronsText),Create(arrowNeurons))
+        self.wait(1)
+        self.play(Write(inputLayerText))
+        self.play(Write(hiddenLayerText))
+        self.play(Write(outputLayerText))
+
+        self.wait(1)
 """
 1. next, create a diagramatic representation of SLFN for N = 3 and inp (x,y)
 2. then move to vector functions with same 2D input and 3D output,

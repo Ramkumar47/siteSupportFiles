@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/2684412425_1736888986_3011702753.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/660496219_4096209278_1646280002.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/660496219_1432596116_896661501.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/660496219_2059910280_766252849.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/660496219_2712861305_2301785888.mp4'
+file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/DiagramaticRepresentation5/660496219_1432596116_570198202.mp4'
