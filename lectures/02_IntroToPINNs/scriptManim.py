@@ -2130,10 +2130,822 @@ class DiagramaticRepresentation10(Scene):
         outputLayerText.move_to(neuron4Circle.get_bottom()+DOWN*0.5+RIGHT)
 
         self.play(Write(neuronsText),Create(arrowNeurons))
-        self.wait(1)
+        self.wait(4)
         self.play(Write(inputLayerText))
         self.play(Write(hiddenLayerText))
         self.play(Write(outputLayerText))
+
+        self.wait(1)
+
+class VectorFunctions1(Scene):
+    def construct(self):
+
+        text = Text("Neural Network", font_size=34)
+        text.set_color(blue_color)
+        text.move_to(UP*3.0)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # draw arrows from input to the first layer of the NN2DExpressionN3
+        arrow1_1 = Arrow(start=xInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_2 = Arrow(start=yInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1_3 = Arrow(start=cInp.get_right(), end=neuron1Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow1Group = VGroup(arrow1_1, arrow1_2, arrow1_3)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # draw arrows from input to the second layer of the NN2DExpressionN3
+        arrow2_1 = Arrow(start=xInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_2 = Arrow(start=yInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2_3 = Arrow(start=cInp.get_right(), end=neuron2Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow2Group = VGroup(arrow2_1, arrow2_2, arrow2_3)
+
+        arrow1Group.set_opacity(1)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating arrows from input to the third layer of the NN2DExpressionN3
+        arrow3_1 = Arrow(start=xInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_2 = Arrow(start=yInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3_3 = Arrow(start=cInp.get_right(), end=neuron3Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow3Group = VGroup(arrow3_1, arrow3_2, arrow3_3)
+
+        arrow2Group.set_opacity(1)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing arrows from the first layer neurons to the output layer neuron
+        arrow4_1 = Arrow(start=neuron1Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_2 = Arrow(start=neuron2Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4_3 = Arrow(start=neuron3Circle.get_right(), end=neuron4Circle.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+        arrow4Group = VGroup(arrow4_1, arrow4_2, arrow4_3)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        arrow3Group.set_opacity(1)
+
+        inpGroup.shift(UP+RIGHT*1.5)
+        neuron1Circle.shift(UP+RIGHT*1.5)
+        neuron2Circle.shift(UP+RIGHT*1.5)
+        neuron3Circle.shift(UP+RIGHT*1.5)
+        neuron4Circle.shift(UP+RIGHT*1.5)
+        arrow1Group.shift(UP+RIGHT*1.5)
+        arrow2Group.shift(UP+RIGHT*1.5)
+        arrow3Group.shift(UP+RIGHT*1.5)
+        arrow4Group.shift(UP+RIGHT*1.5)
+        arrow5.shift(UP+RIGHT*1.5)
+        outputVar.shift(UP+RIGHT*1.5)
+
+        neuronsText = Text("Neurons", font_size=24)
+        neuronsText.set_color(text_color)
+        neuronsText.move_to(UP*2.0+RIGHT*2.5)
+        # arrow from neuronsText to the first layer of the NN2DExpressionN3
+        arrowNeurons = Arrow(start=neuronsText.get_left(), end=neuron1Circle.get_top(),
+                       buff=0.1, color=blue_color, stroke_width=1, tip_length=0.2)
+
+        # layers labels
+        inputLayerText = Text("Input layer", font_size=24)
+        inputLayerText.set_color(text_color)
+        inputLayerText.move_to(inpGroup.get_bottom()+DOWN*0.5+LEFT)
+        hiddenLayerText = Text("Hidden layer", font_size=24)
+        hiddenLayerText.set_color(text_color)
+        hiddenLayerText.move_to(neuron3Circle.get_bottom()+DOWN*0.5)
+        outputLayerText = Text("Output layer", font_size=24)
+        outputLayerText.set_color(text_color)
+        outputLayerText.move_to(neuron4Circle.get_bottom()+DOWN*0.5+RIGHT)
+
+
+        self.add(text,inpGroup,
+                 neuron1Circle, arrow1Group,
+                 arrow2Group,neuron2Circle,
+                 arrow3Group,neuron3Circle,
+                 arrow4Group,neuron4Circle,
+                 arrow5,outputVar,
+                 neuronsText, arrowNeurons,
+                 inputLayerText, hiddenLayerText, outputLayerText)
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.play(Unwrite(text),Uncreate(arrowNeurons), Unwrite(neuronsText),
+                  Unwrite(inputLayerText), Unwrite(hiddenLayerText),
+                  Unwrite(outputLayerText), Uncreate(arrow1Group), Uncreate(arrow2Group), Uncreate(arrow3Group),
+                  Uncreate(arrow4Group), Uncreate(arrow5), Unwrite(outputVar),
+                  Uncreate(neuron1Circle), Uncreate(neuron2Circle), Uncreate(neuron3Circle), Uncreate(neuron4Circle), Uncreate(inpGroup))
+        self.play(Write(titleText))
+
+
+        self.wait(1)
+
+class VectorFunctions2(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        definitionText = Text("A function that takes a vector as input and produces a vector as output.", font_size=24)
+        definitionText.set_color(text_color)
+        definitionText.move_to(UP*1.0)
+
+        exampleMath = MathTex(r"\mathbf{u}(x,y,z) = \begin{bmatrix} u(x,y,z) \\ v(x,y,z) \\ w(x,y,z) \end{bmatrix}").scale(1)
+        exampleMath.set_color(text_color)
+        exampleMath.move_to(DOWN*0.5+RIGHT*3.0)
+
+        exampleText = Text("Example: ", font_size=24)
+        exampleText.set_color(red_color)
+        exampleText.move_to(DOWN*0.5+LEFT*5.0)
+        exampleMathText = Text("3D Velocity vector field", font_size=24)
+        exampleMathText.set_color(text_color)
+        exampleMathText.move_to(DOWN*0.5+LEFT*2.0)
+
+        self.play(Write(definitionMath))
+        self.play(Write(definitionText))
+        self.play(Write(exampleText),Write(exampleMathText),Write(exampleMath))
+
+        self.wait(1)
+
+class VectorFunctions3(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        definitionText = Text("A function that takes a vector as input and produces a vector as output.", font_size=24)
+        definitionText.set_color(text_color)
+        definitionText.move_to(UP*1.0)
+
+        exampleMath = MathTex(r"\mathbf{u}(x,y,z) = \begin{bmatrix} u(x,y,z) \\ v(x,y,z) \\ w(x,y,z) \end{bmatrix}").scale(1)
+        exampleMath.set_color(text_color)
+        exampleMath.move_to(DOWN*0.5+RIGHT*3.0)
+
+        exampleText = Text("Example: ", font_size=24)
+        exampleText.set_color(red_color)
+        exampleText.move_to(DOWN*0.5+LEFT*5.0)
+        exampleMathText = Text("3D Velocity vector field", font_size=24)
+        exampleMathText.set_color(text_color)
+        exampleMathText.move_to(DOWN*0.5+LEFT*2.0)
+
+        self.add(definitionMath, definitionText, exampleText, exampleMathText,
+                 exampleMath)
+        self.play(Unwrite(definitionText), Unwrite(exampleText),
+                  Unwrite(exampleMathText), Unwrite(exampleMath))
+
+        scalarFunctionText = Text("For a scalar function: ", font_size=24)
+        scalarFunctionText.set_color(red_color)
+        scalarFunctionText.move_to(UP*1.0+LEFT*4.0)
+
+        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+
+        self.play(Write(scalarFunctionText))
+        self.play(Write(NN2DExpressionN3))
+
+        self.wait(1)
+
+class VectorFunctions4(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        scalarFunctionText = Text("For a scalar function: ", font_size=24)
+        scalarFunctionText.set_color(red_color)
+        scalarFunctionText.move_to(UP*1.0+LEFT*4.0)
+
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+
+        self.add(definitionMath, scalarFunctionText, NN2DExpressionN3)
+
+        # draw an underline higlighting the first layer of the NN2DExpressionN3
+        underline1 = Underline(NN2DExpressionN3_1, color=blue_color)
+        underline1.stretch_to_fit_width(NN2DExpressionN3_1.get_width()*0.12)
+        underline1.shift(LEFT*1.1)
+        underline2 = Underline(NN2DExpressionN3_2, color=blue_color)
+        underline2.stretch_to_fit_width(NN2DExpressionN3_2.get_width()*0.15)
+        underline2.shift(LEFT*1.6)
+        underline3 = Underline(NN2DExpressionN3_3, color=blue_color)
+        underline3.stretch_to_fit_width(NN2DExpressionN3_3.get_width()*0.15)
+        underline3.shift(LEFT*1.6)
+
+        self.play(Create(underline1), Create(underline2), Create(underline3))
+        self.wait(2)
+        self.play(Uncreate(underline1), Uncreate(underline2), Uncreate(underline3))
+        self.wait(1)
+
+        self.wait(1)
+
+class VectorFunctions5(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        scalarFunctionText = Text("For a scalar function: ", font_size=24)
+        scalarFunctionText.set_color(red_color)
+        scalarFunctionText.move_to(UP*1.0+LEFT*4.0)
+
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+
+        self.add(definitionMath, scalarFunctionText, NN2DExpressionN3)
+
+        vectorFunctionText = Text("For a vector function: ", font_size=24)
+        vectorFunctionText.set_color(red_color)
+        vectorFunctionText.move_to(UP*2.0+LEFT*4.0)
+        vectorFunctionMath = MathTex(r" = \begin{bmatrix} f(x,y) & g(x,y) \end{bmatrix}^T").scale(0.75)
+        vectorFunctionMath.set_color(text_color)
+        vectorFunctionMath.move_to(UP*2.0+RIGHT*2.5)
+
+        self.play(FadeOut(scalarFunctionText),Write(vectorFunctionText))
+        self.play(Write(vectorFunctionMath))
+
+        self.wait(1)
+
+class VectorFunctions6(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+
+        vectorFunctionText = Text("For a vector function: ", font_size=24)
+        vectorFunctionText.set_color(red_color)
+        vectorFunctionText.move_to(UP*2.0+LEFT*4.0)
+        vectorFunctionMath = MathTex(r" = \begin{bmatrix} f(x,y) & g(x,y) \end{bmatrix}^T").scale(0.75)
+        vectorFunctionMath.set_color(text_color)
+        vectorFunctionMath.move_to(UP*2.0+RIGHT*2.5)
+
+        self.add(definitionMath, NN2DExpressionN3,
+                 vectorFunctionText, vectorFunctionMath)
+
+        NN2DExpressionN3V2_1 = MathTex(r"\hat{g}(x,y) =  w_{2,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3V2_1.set_color(text_color).move_to(DOWN*1+LEFT*2.75)
+        NN2DExpressionN3V2_2 = MathTex(r"+ \ \ w_{2,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_2.set_color(text_color).move_to(DOWN*1+RIGHT*3.)
+        NN2DExpressionN3V2_3 = MathTex(r"+ \ \ w_{2,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_3.set_color(text_color).move_to(DOWN*2.0+RIGHT*2.5)
+        NN2DExpressionN3V2 = VGroup(NN2DExpressionN3V2_1, NN2DExpressionN3V2_2, NN2DExpressionN3V2_3)
+        NN2DExpressionN3V2.move_to(DOWN*2.25)
+
+        self.play(NN2DExpressionN3.animate.shift(UP*1.25))
+        self.play(Write(NN2DExpressionN3V2))
+
+        self.wait(1)
+
+class VectorFunctions7(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+        NN2DExpressionN3.shift(UP*1.25)
+
+        vectorFunctionText = Text("For a vector function: ", font_size=24)
+        vectorFunctionText.set_color(red_color)
+        vectorFunctionText.move_to(UP*2.0+LEFT*4.0)
+        vectorFunctionMath = MathTex(r" = \begin{bmatrix} f(x,y) & g(x,y) \end{bmatrix}^T").scale(0.75)
+        vectorFunctionMath.set_color(text_color)
+        vectorFunctionMath.move_to(UP*2.0+RIGHT*2.5)
+
+        NN2DExpressionN3V2_1 = MathTex(r"\hat{g}(x,y) =  w_{2,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3V2_1.set_color(text_color).move_to(DOWN*1+LEFT*2.75)
+        NN2DExpressionN3V2_2 = MathTex(r"+ \ \ w_{2,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_2.set_color(text_color).move_to(DOWN*1+RIGHT*3.)
+        NN2DExpressionN3V2_3 = MathTex(r"+ \ \ w_{2,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_3.set_color(text_color).move_to(DOWN*2.0+RIGHT*2.5)
+        NN2DExpressionN3V2 = VGroup(NN2DExpressionN3V2_1, NN2DExpressionN3V2_2, NN2DExpressionN3V2_3)
+        NN2DExpressionN3V2.move_to(DOWN*2.25)
+
+        self.add(definitionMath, NN2DExpressionN3,
+                 vectorFunctionText, vectorFunctionMath,
+                 NN2DExpressionN3V2)
+
+        rewritingText = Text("Rewriting as", font_size=24)
+        rewritingText.set_color(text_color)
+        rewritingText.move_to(LEFT*4+DOWN*1)
+
+        NNVectorForm1 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \begin{bmatrix} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) \\ \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)}) \\ \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)}) \end{bmatrix}").scale(0.75)
+        NNVectorForm1.set_color(text_color)
+        NNVectorForm1.move_to(DOWN*2.5)
+
+        self.play(Unwrite(vectorFunctionText), Unwrite(vectorFunctionMath),
+                  Unwrite(definitionMath))
+        self.play(NN2DExpressionN3.animate.shift(UP*1.25), NN2DExpressionN3V2.animate.shift(UP*1.75))
+        self.play(Write(rewritingText))
+        self.wait(1)
+        self.play(Write(NNVectorForm1))
+
+        self.wait(1)
+
+class VectorFunctions8(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        definitionMath = MathTex(r"\mathbf{f}(x,y)").scale(1)
+        definitionMath.set_color(text_color)
+        definitionMath.move_to(UP*2.0)
+
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
+        NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.)
+        NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
+        NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
+        NN2DExpressionN3.move_to(DOWN)
+        NN2DExpressionN3.shift(UP*1.25)
+
+        vectorFunctionText = Text("For a vector function: ", font_size=24)
+        vectorFunctionText.set_color(red_color)
+        vectorFunctionText.move_to(UP*2.0+LEFT*4.0)
+        vectorFunctionMath = MathTex(r" = \begin{bmatrix} f(x,y) & g(x,y) \end{bmatrix}^T").scale(0.75)
+        vectorFunctionMath.set_color(text_color)
+        vectorFunctionMath.move_to(UP*2.0+RIGHT*2.5)
+
+        NN2DExpressionN3V2_1 = MathTex(r"\hat{g}(x,y) =  w_{2,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3V2_1.set_color(text_color).move_to(DOWN*1+LEFT*2.75)
+        NN2DExpressionN3V2_2 = MathTex(r"+ \ \ w_{2,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_2.set_color(text_color).move_to(DOWN*1+RIGHT*3.)
+        NN2DExpressionN3V2_3 = MathTex(r"+ \ \ w_{2,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
+        NN2DExpressionN3V2_3.set_color(text_color).move_to(DOWN*2.0+RIGHT*2.5)
+        NN2DExpressionN3V2 = VGroup(NN2DExpressionN3V2_1, NN2DExpressionN3V2_2, NN2DExpressionN3V2_3)
+        NN2DExpressionN3V2.move_to(DOWN*2.25)
+
+        NN2DExpressionN3.shift(UP*1.25)
+        NN2DExpressionN3V2.shift(UP*1.75)
+
+        rewritingText = Text("Rewriting as", font_size=24)
+        rewritingText.set_color(text_color)
+        rewritingText.move_to(LEFT*4+DOWN*1)
+
+        NNVectorForm1 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \begin{bmatrix} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) \\ \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)}) \\ \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)}) \end{bmatrix}").scale(0.75)
+        NNVectorForm1.set_color(text_color)
+        NNVectorForm1.move_to(DOWN*2.5)
+
+        self.add(NN2DExpressionN3,
+                 NN2DExpressionN3V2, rewritingText, NNVectorForm1)
+
+        NNVectorForm2 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)} \\ w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)} \\ w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)} \end{bmatrix}\right)").scale(0.75)
+        NNVectorForm2.set_color(text_color)
+        NNVectorForm2.move_to(DOWN*2.5)
+
+        self.play(FadeOut(NN2DExpressionN3), FadeOut(NN2DExpressionN3V2))
+        self.play(NNVectorForm1.animate.shift(UP*2.5))
+        self.play(Write(NNVectorForm2))
+
+        self.wait(1)
+
+class VectorFunctions9(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        rewritingText = Text("Rewriting as", font_size=24)
+        rewritingText.set_color(text_color)
+        rewritingText.move_to(LEFT*4+DOWN*1)
+
+        NNVectorForm1 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \begin{bmatrix} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) \\ \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)}) \\ \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)}) \end{bmatrix}").scale(0.75)
+        NNVectorForm1.set_color(text_color)
+        NNVectorForm1.move_to(DOWN*2.5)
+        NNVectorForm1.shift(UP*2.5)
+
+        NNVectorForm2 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)} \\ w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)} \\ w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)} \end{bmatrix}\right)").scale(0.75)
+        NNVectorForm2.set_color(text_color)
+        NNVectorForm2.move_to(DOWN*2.5)
+
+        self.add(rewritingText, NNVectorForm1, NNVectorForm2)
+
+        NNVectorForm3 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)} & w_{1,2}^{(1)} \\ w_{2,1}^{(1)} & w_{2,2}^{(1)} \\ w_{3,1}^{(1)} & w_{3,2}^{(1)} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} + \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)}\end{bmatrix}\right)").scale(0.75)
+        NNVectorForm3.set_color(text_color)
+        NNVectorForm3.move_to(DOWN*2.5)
+
+        self.play(FadeOut(NNVectorForm1))
+        self.play(NNVectorForm2.animate.shift(UP*2.5))
+        self.play(Write(NNVectorForm3))
+
+        self.wait(1)
+
+class VectorFunctions10(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        rewritingText = Text("Rewriting as", font_size=24)
+        rewritingText.set_color(text_color)
+        rewritingText.move_to(LEFT*4+DOWN*1)
+
+        NNVectorForm2 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)} \\ w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)} \\ w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)} \end{bmatrix}\right)").scale(0.75)
+        NNVectorForm2.set_color(text_color)
+        NNVectorForm2.move_to(DOWN*2.5)
+        NNVectorForm2.shift(UP*2.5)
+
+        NNVectorForm3 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)} & w_{1,2}^{(1)} \\ w_{2,1}^{(1)} & w_{2,2}^{(1)} \\ w_{3,1}^{(1)} & w_{3,2}^{(1)} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} + \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)}\end{bmatrix}\right)").scale(0.75)
+        NNVectorForm3.set_color(text_color)
+        NNVectorForm3.move_to(DOWN*2.5)
+
+        self.add(rewritingText, NNVectorForm2, NNVectorForm3)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(x,y) = W^{(2)} \sigma\left(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.move_to(DOWN*2.5)
+
+        self.play(FadeOut(NNVectorForm2))
+        self.play(NNVectorForm3.animate.shift(UP*2.5))
+        self.play(Write(NNVectorForm4))
+
+        self.wait(1)
+
+class VectorFunctions11(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        rewritingText = Text("Rewriting as", font_size=24)
+        rewritingText.set_color(text_color)
+        rewritingText.move_to(LEFT*4+DOWN*1)
+
+        NNVectorForm3 = MathTex(r"\begin{bmatrix} \hat{f}(x,y) \\ \hat{g}(x,y) \end{bmatrix} = \begin{bmatrix} w_{1,1}^{(2)} & w_{1,2}^{(2)} & w_{1,3}^{(2)} \\ w_{2,1}^{(2)} & w_{2,2}^{(2)} & w_{2,3}^{(2)} \end{bmatrix} \sigma\left(\begin{bmatrix} w_{1,1}^{(1)} & w_{1,2}^{(1)} \\ w_{2,1}^{(1)} & w_{2,2}^{(1)} \\ w_{3,1}^{(1)} & w_{3,2}^{(1)} \end{bmatrix} \begin{bmatrix} x \\ y \end{bmatrix} + \begin{bmatrix} b_1^{(1)} \\ b_2^{(1)} \\ b_3^{(1)}\end{bmatrix}\right)").scale(0.75)
+        NNVectorForm3.set_color(text_color)
+        NNVectorForm3.move_to(DOWN*2.5)
+        NNVectorForm3.shift(UP*2.5)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(x,y) = W^{(2)} \sigma\left(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.move_to(DOWN*2.5)
+
+        self.add(rewritingText, NNVectorForm3, NNVectorForm4)
+
+        SLFNText = Text("Generic expression of Single Layer Neural Network", font_size=24)
+        SLFNText.set_color(blue_color)
+        SLFNText.move_to(UP*1.0)
+
+        self.play(FadeOut(NNVectorForm3))
+        self.play(NNVectorForm4.animate.shift(UP*4.5))
+        self.play(Transform(rewritingText, SLFNText))
+
+        self.wait(1)
+
+class VectorFunctions12(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(x,y) = W^{(2)} \sigma\left(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.move_to(DOWN*2.5)
+        NNVectorForm4.shift(UP*4.5)
+
+        SLFNText = Text("Generic expression of Single Layer Neural Network", font_size=24)
+        SLFNText.set_color(blue_color)
+        SLFNText.move_to(UP*1.0)
+
+        self.add(SLFNText, NNVectorForm4)
+
+        graphicalText = Text("Graphically,", font_size=24)
+        graphicalText.set_color(text_color)
+        graphicalText.move_to(UP*1.0+LEFT*4.0)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        self.play(Unwrite(SLFNText))
+        self.play(Write(graphicalText))
+        self.wait(1)
+        # drawing the network
+        self.play(Write(inpGroup))
+        self.play(Create(line1Group))
+        self.play(Create(neuron1Circle), Create(neuron2Circle), Create(neuron3Circle))
+        self.play(Create(line2Group))
+        self.play(Create(neuron4Circle))
+        self.play(Create(arrow5))
+        self.play(Write(outputVar))
+
+        self.wait(1)
+
+class VectorFunctions13(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(x,y) = W^{(2)} \sigma\left(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.move_to(DOWN*2.5)
+        NNVectorForm4.shift(UP*4.5)
+
+        SLFNText = Text("Generic expression of Single Layer Neural Network", font_size=24)
+        SLFNText.set_color(blue_color)
+        SLFNText.move_to(UP*1.0)
+
+        graphicalText = Text("Graphically,", font_size=24)
+        graphicalText.set_color(text_color)
+        graphicalText.move_to(UP*1.0+LEFT*4.0)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        self.add(NNVectorForm4,graphicalText, inpGroup, neuron1Circle,
+                 neuron2Circle, neuron3Circle, neuron4Circle, outputVar,
+                 arrow5, line1Group, line2Group)
+        neuron5Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron5Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5+DOWN*0.75)
+        outputVar2 = MathTex(r"\hat{g}(x,y)").scale(1).move_to(neuron5Circle.get_right()+RIGHT*1.5)
+        outputVar2.set_color(text_color)
+        arrow6 = Arrow(start=neuron5Circle.get_right(), end=outputVar2.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        line4_o = Line(neuron1Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line5_o = Line(neuron2Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line6_o = Line(neuron3Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3Group = VGroup(line4_o, line5_o, line6_o)
+
+        hiddenDot = Dot(point=neuron4Circle.get_left()+RIGHT*0.1+UP*0.75, color=blue_color)
+
+        line7_o = Line(neuron1Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line8_o = Line(neuron2Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line9_o = Line(neuron3Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line4Group = VGroup(line7_o, line8_o, line9_o)
+
+        self.play(neuron4Circle.animate.shift(UP*0.75), FadeOut(line2Group),
+                  outputVar.animate.shift(UP*0.75), arrow5.animate.shift(UP*0.75))
+        self.play(Create(neuron5Circle), Create(arrow6), Write(outputVar2))
+        self.play(Create(line4Group),Create(line3Group))
 
         self.wait(1)
 """
