@@ -18,6 +18,7 @@ red_color        = "#d20f39"
 blue_color       = "#1e66f5"
 green_color      = "#40a02b"
 yellow_color     = "#df8e1d"
+mauvre_color     = "#8839ef"
 
 config.background_color = background_color
 
@@ -2948,13 +2949,767 @@ class VectorFunctions13(Scene):
         self.play(Create(line4Group),Create(line3Group))
 
         self.wait(1)
+
+class DeepNetworks1(Scene):
+    def construct(self):
+
+        titleText = Text("Vector Functions", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(x,y) = W^{(2)} \sigma\left(W^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.move_to(DOWN*2.5)
+        NNVectorForm4.shift(UP*4.5)
+
+        SLFNText = Text("Generic expression of Single Layer Neural Network", font_size=24)
+        SLFNText.set_color(blue_color)
+        SLFNText.move_to(UP*1.0)
+
+        graphicalText = Text("Graphically,", font_size=24)
+        graphicalText.set_color(text_color)
+        graphicalText.move_to(UP*1.0+LEFT*4.0)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        neuron5Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron5Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5+DOWN*0.75)
+        outputVar2 = MathTex(r"\hat{g}(x,y)").scale(1).move_to(neuron5Circle.get_right()+RIGHT*1.5)
+        outputVar2.set_color(text_color)
+        arrow6 = Arrow(start=neuron5Circle.get_right(), end=outputVar2.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        line4_o = Line(neuron1Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line5_o = Line(neuron2Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line6_o = Line(neuron3Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3Group = VGroup(line4_o, line5_o, line6_o)
+
+        hiddenDot = Dot(point=neuron4Circle.get_left()+RIGHT*0.1+UP*0.75, color=blue_color)
+
+        line7_o = Line(neuron1Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line8_o = Line(neuron2Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line9_o = Line(neuron3Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line4Group = VGroup(line7_o, line8_o, line9_o)
+
+        neuron4Circle.shift(UP*0.75)
+        outputVar.shift(UP*0.75)
+        arrow5.shift(UP*0.75)
+
+        self.add(NNVectorForm4,graphicalText, inpGroup, neuron1Circle,
+                 neuron2Circle, neuron3Circle, neuron4Circle, outputVar,
+                 arrow5, line1Group, line2Group, neuron5Circle, outputVar2, arrow6, line3Group, line4Group)
+
+        titleText2 = Text("Deep Networks", font_size=34)
+        titleText2.set_color(blue_color)
+        titleText2.move_to(UP*3.0)
+
+        self.play(FadeOut(NNVectorForm4),
+                  FadeOut(graphicalText), FadeOut(inpGroup),
+                  FadeOut(neuron1Circle), FadeOut(neuron2Circle),
+                  FadeOut(neuron3Circle), FadeOut(neuron4Circle),
+                  FadeOut(outputVar), FadeOut(arrow5), FadeOut(line1Group),
+                  FadeOut(line2Group), FadeOut(neuron5Circle),
+                  FadeOut(outputVar2), FadeOut(arrow6), FadeOut(line3Group),
+                  FadeOut(line4Group))
+        self.play(Transform(titleText, titleText2))
+
+        self.wait(1)
+
+class DeepNetworks2(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup = VGroup(axes, complex_sine_curve, x_label, y_label)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign1 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-1.5*UP, buff=0.5)
+        plus_sign1.set_color(text_color)
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+        plus_sign3 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-9.0*UP, buff=0.5)
+        plus_sign3.set_color(text_color)
+
+        # drawing new axes on the right with a new sine wave
+        new_axes1 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes1.next_to(axes, 0.5*RIGHT-2.75*UP, buff=-2).scale(0.25)
+        new_axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes2.next_to(new_axes1, DOWN, buff=-2).scale(0.25)
+        new_axes3 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes3.next_to(new_axes2, DOWN, buff=-2).scale(0.25)
+        new_axes4 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes4.next_to(new_axes3, DOWN, buff=-2).scale(0.25)
+
+        sigmoidCurve1 = new_axes1.plot(lambda x: 0.5+1/(1+np.exp(-2*x)), color=green_color)
+        sigmoidCurve2 = new_axes2.plot(lambda x: 0.5+1/(1+np.exp(-4*x)), color=green_color)
+        sigmoidCurve3 = new_axes3.plot(lambda x: 0.5+1-1/(1+np.exp(-5.5*x)), color=green_color)
+        sigmoidCurve4 = new_axes4.plot(lambda x: 0.5+1-1/(1+np.exp(-10*x+4)), color=green_color)
+
+        mathExp = MathTex(r"\hat{f}(x,y) = \sum_{i=1}^{4} w_i \sigma\left(a_i x + b_i y + c_i\right)").scale(0.75)
+        mathExp.set_color(text_color)
+        mathExp.move_to(LEFT*3+DOWN*1.5)
+
+        # scaling and moving down a bit
+        sineCurveGroup.scale(0.75).shift(DOWN*0.5)
+
+        self.play(Create(sineCurveGroup),
+                  Write(equal_sign), Write(plus_sign1), Write(plus_sign2),
+                  Write(plus_sign3), Create(new_axes1), Create(new_axes2),
+                  Create(new_axes3), Create(new_axes4), Create(sigmoidCurve1),
+                  Create(sigmoidCurve2), Create(sigmoidCurve3), Create(sigmoidCurve4),
+                  Write(mathExp))
+
+        self.wait(1)
+
+class DeepNetworks3(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup = VGroup(axes, complex_sine_curve, x_label, y_label)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign1 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-1.5*UP, buff=0.5)
+        plus_sign1.set_color(text_color)
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+        plus_sign3 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-9.0*UP, buff=0.5)
+        plus_sign3.set_color(text_color)
+
+        # drawing new axes on the right with a new sine wave
+        new_axes1 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes1.next_to(axes, 0.5*RIGHT-2.75*UP, buff=-2).scale(0.25)
+        new_axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes2.next_to(new_axes1, DOWN, buff=-2).scale(0.25)
+        new_axes3 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes3.next_to(new_axes2, DOWN, buff=-2).scale(0.25)
+        new_axes4 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes4.next_to(new_axes3, DOWN, buff=-2).scale(0.25)
+
+        sigmoidCurve1 = new_axes1.plot(lambda x: 0.5+1/(1+np.exp(-2*x)), color=green_color)
+        sigmoidCurve2 = new_axes2.plot(lambda x: 0.5+1/(1+np.exp(-4*x)), color=green_color)
+        sigmoidCurve3 = new_axes3.plot(lambda x: 0.5+1-1/(1+np.exp(-5.5*x)), color=green_color)
+        sigmoidCurve4 = new_axes4.plot(lambda x: 0.5+1-1/(1+np.exp(-10*x+4)), color=green_color)
+
+        mathExp = MathTex(r"\hat{f}(x,y) = \sum_{i=1}^{4} w_i \sigma\left(a_i x + b_i y + c_i\right)").scale(0.75)
+        mathExp.set_color(text_color)
+        mathExp.move_to(LEFT*3+DOWN*1.5)
+
+        # scaling and moving down a bit
+        sineCurveGroup.scale(0.75).shift(DOWN*0.5)
+
+        # creating more complex sine curve
+        newAxes = Axes(
+            x_range=[-2,3],
+            y_range=[0,3],
+            axis_config={"color": blue_color},
+        )
+
+        complex_sine_curve2 = newAxes.plot(lambda x: 1.5+0.5*np.sin(11*np.pi*x+1)+1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=mauvre_color)
+
+        x_label2 = newAxes.get_x_axis_label("x")
+        y_label2 = newAxes.get_y_axis_label("y")
+        x_label2.set_color(text_color)
+        y_label2.set_color(text_color)
+        newAxes.scale(0.5).to_edge(UL)
+        complex_sine_curve2.scale(0.5).to_edge(UL)
+        x_label2.move_to(LEFT).scale(0.75)
+        y_label2.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup2 = VGroup(newAxes,complex_sine_curve2,x_label2,y_label2)
+        sineCurveGroup2.scale(0.75).shift(DOWN*0.5)
+
+        self.add(sineCurveGroup, equal_sign, plus_sign1, plus_sign2, plus_sign3,
+                 new_axes1, new_axes2, new_axes3, new_axes4,
+                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4,
+                 mathExp)
+
+        self.play(FadeOut(mathExp),
+                  sineCurveGroup.animate.shift(DOWN*3.5).scale(0.75))
+        self.play(Create(sineCurveGroup2))
+
+        self.wait(1)
+
+class DeepNetworks4(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup = VGroup(axes, complex_sine_curve, x_label, y_label)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign1 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-1.5*UP, buff=0.5)
+        plus_sign1.set_color(text_color)
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+        plus_sign3 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-9.0*UP, buff=0.5)
+        plus_sign3.set_color(text_color)
+
+        # drawing new axes on the right with a new sine wave
+        new_axes1 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes1.next_to(axes, 0.5*RIGHT-2.75*UP, buff=-2).scale(0.25)
+        new_axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes2.next_to(new_axes1, DOWN, buff=-2).scale(0.25)
+        new_axes3 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes3.next_to(new_axes2, DOWN, buff=-2).scale(0.25)
+        new_axes4 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes4.next_to(new_axes3, DOWN, buff=-2).scale(0.25)
+
+        sigmoidCurve1 = new_axes1.plot(lambda x: 0.5+1/(1+np.exp(-2*x)), color=green_color)
+        sigmoidCurve2 = new_axes2.plot(lambda x: 0.5+1/(1+np.exp(-4*x)), color=green_color)
+        sigmoidCurve3 = new_axes3.plot(lambda x: 0.5+1-1/(1+np.exp(-5.5*x)), color=green_color)
+        sigmoidCurve4 = new_axes4.plot(lambda x: 0.5+1-1/(1+np.exp(-10*x+4)), color=green_color)
+
+        # scaling and moving down a bit
+        sineCurveGroup.scale(0.75).shift(DOWN*0.5)
+
+        # creating more complex sine curve
+        newAxes = Axes(
+            x_range=[-2,3],
+            y_range=[0,3],
+            axis_config={"color": blue_color},
+        )
+
+        complex_sine_curve2 = newAxes.plot(lambda x: 1.5+0.5*np.sin(11*np.pi*x+1)+1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=mauvre_color)
+
+        x_label2 = newAxes.get_x_axis_label("x")
+        y_label2 = newAxes.get_y_axis_label("y")
+        x_label2.set_color(text_color)
+        y_label2.set_color(text_color)
+        newAxes.scale(0.5).to_edge(UL)
+        complex_sine_curve2.scale(0.5).to_edge(UL)
+        x_label2.move_to(LEFT).scale(0.75)
+        y_label2.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup2 = VGroup(newAxes,complex_sine_curve2,x_label2,y_label2)
+        sineCurveGroup2.scale(0.75).shift(DOWN*0.5)
+
+        sineCurveGroup.shift(DOWN*3.5).scale(0.75)
+
+        self.add(sineCurveGroup, equal_sign, plus_sign1, plus_sign2, plus_sign3,
+                 new_axes1, new_axes2, new_axes3, new_axes4,
+                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4,
+                 sineCurveGroup2)
+
+        textSigmoid = Text("With more no. of sigmoidal bases", font_size=24)
+        textSigmoid.set_color(text_color)
+        textSigmoid.move_to(DOWN*0.75+LEFT*3.0)
+
+        self.play(Write(textSigmoid))
+
+        self.wait(1)
+
+class DeepNetworks5(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup = VGroup(axes, complex_sine_curve, x_label, y_label)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign1 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-1.5*UP, buff=0.5)
+        plus_sign1.set_color(text_color)
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+        plus_sign3 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-9.0*UP, buff=0.5)
+        plus_sign3.set_color(text_color)
+
+        # drawing new axes on the right with a new sine wave
+        new_axes1 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes1.next_to(axes, 0.5*RIGHT-2.75*UP, buff=-2).scale(0.25)
+        new_axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes2.next_to(new_axes1, DOWN, buff=-2).scale(0.25)
+        new_axes3 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes3.next_to(new_axes2, DOWN, buff=-2).scale(0.25)
+        new_axes4 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes4.next_to(new_axes3, DOWN, buff=-2).scale(0.25)
+
+        sigmoidCurve1 = new_axes1.plot(lambda x: 0.5+1/(1+np.exp(-2*x)), color=green_color)
+        sigmoidCurve2 = new_axes2.plot(lambda x: 0.5+1/(1+np.exp(-4*x)), color=green_color)
+        sigmoidCurve3 = new_axes3.plot(lambda x: 0.5+1-1/(1+np.exp(-5.5*x)), color=green_color)
+        sigmoidCurve4 = new_axes4.plot(lambda x: 0.5+1-1/(1+np.exp(-10*x+4)), color=green_color)
+
+        # scaling and moving down a bit
+        sineCurveGroup.scale(0.75).shift(DOWN*0.5)
+
+        # creating more complex sine curve
+        newAxes = Axes(
+            x_range=[-2,3],
+            y_range=[0,3],
+            axis_config={"color": blue_color},
+        )
+
+        complex_sine_curve2 = newAxes.plot(lambda x: 1.5+0.5*np.sin(11*np.pi*x+1)+1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=mauvre_color)
+
+        x_label2 = newAxes.get_x_axis_label("x")
+        y_label2 = newAxes.get_y_axis_label("y")
+        x_label2.set_color(text_color)
+        y_label2.set_color(text_color)
+        newAxes.scale(0.5).to_edge(UL)
+        complex_sine_curve2.scale(0.5).to_edge(UL)
+        x_label2.move_to(LEFT).scale(0.75)
+        y_label2.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup2 = VGroup(newAxes,complex_sine_curve2,x_label2,y_label2)
+        sineCurveGroup2.scale(0.75).shift(DOWN*0.5)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x+2)+0.4*np.sin(2*np.pi*2.3*x+0.5+2)+0.3*np.sin(2*np.pi*4.7*x+1.2+2)+0.2*np.sin(2*np.pi*7*x+2), color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.shift(DOWN*3.5).scale(0.75)
+        sineCurveGroup3.shift(UP*3+RIGHT*8).scale(0.75)
+        sineCurveGroup3.shift(DOWN*3)
+
+        sineCurveGroup.shift(DOWN*3.5).scale(0.75)
+
+        textSigmoid = Text("With more no. of sigmoidal bases", font_size=24)
+        textSigmoid.set_color(text_color)
+        textSigmoid.move_to(DOWN*0.75+LEFT*3.0)
+
+        self.add(sineCurveGroup, equal_sign, plus_sign1, plus_sign2, plus_sign3,
+                 new_axes1, new_axes2, new_axes3, new_axes4,
+                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4,
+                 sineCurveGroup2, textSigmoid)
+
+        textFeatures = Text("With less no. of basis functions", font_size=24)
+        textFeatures.set_color(text_color)
+        textFeatures.move_to(DOWN*0.75+LEFT*3.0)
+
+
+        self.play(FadeOut(textSigmoid),
+                  FadeOut(new_axes1), FadeOut(new_axes2), FadeOut(new_axes3), FadeOut(new_axes4),
+                  FadeOut(sigmoidCurve1), FadeOut(sigmoidCurve2), FadeOut(sigmoidCurve3), FadeOut(sigmoidCurve4),
+                  FadeOut(plus_sign1),FadeOut(plus_sign3))
+        self.play(sineCurveGroup.animate.shift(UP*3+RIGHT*8),
+                  equal_sign.animate.shift(DOWN*1.5))
+        self.play(Create(sineCurveGroup3))
+        self.wait(1)
+        self.play(Write(textFeatures))
+
+        self.wait(1)
+
+class DeepNetworks6(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup = VGroup(axes, complex_sine_curve, x_label, y_label)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+
+        # scaling and moving down a bit
+        sineCurveGroup.scale(0.75).shift(DOWN*0.5)
+
+        # creating more complex sine curve
+        newAxes = Axes(
+            x_range=[-2,3],
+            y_range=[0,3],
+            axis_config={"color": blue_color},
+        )
+
+        complex_sine_curve2 = newAxes.plot(lambda x: 1.5+0.5*np.sin(11*np.pi*x+1)+1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=mauvre_color)
+
+        x_label2 = newAxes.get_x_axis_label("x")
+        y_label2 = newAxes.get_y_axis_label("y")
+        x_label2.set_color(text_color)
+        y_label2.set_color(text_color)
+        newAxes.scale(0.5).to_edge(UL)
+        complex_sine_curve2.scale(0.5).to_edge(UL)
+        x_label2.move_to(LEFT).scale(0.75)
+        y_label2.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup2 = VGroup(newAxes,complex_sine_curve2,x_label2,y_label2)
+        sineCurveGroup2.scale(0.75).shift(DOWN*0.5)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x+2)+0.4*np.sin(2*np.pi*2.3*x+0.5+2)+0.3*np.sin(2*np.pi*4.7*x+1.2+2)+0.2*np.sin(2*np.pi*7*x+2), color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.shift(DOWN*3.5).scale(0.75)
+        sineCurveGroup3.shift(UP*3+RIGHT*8).scale(0.75)
+        sineCurveGroup3.shift(DOWN*3)
+
+        sineCurveGroup.shift(DOWN*3.5).scale(0.75)
+
+        textFeatures = Text("With less no. of basis functions", font_size=24)
+        textFeatures.set_color(text_color)
+        textFeatures.move_to(DOWN*0.75+LEFT*3.0)
+
+        sineCurveGroup.shift(UP*3+RIGHT*8)
+        equal_sign.shift(DOWN*1.5)
+
+        self.add(sineCurveGroup, equal_sign, plus_sign2,
+                 sineCurveGroup2, textFeatures, sineCurveGroup3)
+
+        self.play(FadeOut(textFeatures),
+                  FadeOut(sineCurveGroup2),
+                  FadeOut(plus_sign2),FadeOut(equal_sign),
+                  FadeOut(sineCurveGroup3),FadeOut(sineCurveGroup))
+
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+
+        self.play(Write(NNVectorForm4))
+
+        self.wait(1)
+
+class DeepNetworks7(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+
+        self.add(NNVectorForm4)
+
+        NNVectorForm5 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(3)}\sigma\left(\mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right) + \mathbf{b}^{(2)}\right)").scale(1)
+        NNVectorForm5.set_color(text_color)
+        NNVectorForm5.move_to(DOWN*1)
+
+        self.play(NNVectorForm4.animate.shift(UP*1))
+        self.play(Write(NNVectorForm5))
+
+        self.wait(1)
+
+
 """
-1. next, create a diagramatic representation of SLFN for N = 3 and inp (x,y)
-2. then move to vector functions with same 2D input and 3D output,
-    show x,y,z -> u,v,w velocity field example for vector function
-    Transform that vector function expression into NN's vector expression
-    and introduce the math of it.
-3. Then move to multi layer network with that 1D input example
+1. put graphical visualization
+2. talk about hyper parameter tuning, wider network vs deep skinny network
     """
 
 #==============================================================================
