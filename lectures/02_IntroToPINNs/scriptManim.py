@@ -3706,10 +3706,2180 @@ class DeepNetworks7(Scene):
 
         self.wait(1)
 
+class DeepNetworks8(Scene):
+    def construct(self):
 
-"""
-1. put graphical visualization
-2. talk about hyper parameter tuning, wider network vs deep skinny network
-    """
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm4 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right)").scale(1)
+        NNVectorForm4.set_color(text_color)
+        NNVectorForm4.shift(UP*1)
+
+        NNVectorForm5 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(3)}\sigma\left(\mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right) + \mathbf{b}^{(2)}\right)").scale(1)
+        NNVectorForm5.set_color(text_color)
+        NNVectorForm5.move_to(DOWN*1)
+
+        self.add(NNVectorForm4, NNVectorForm5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        neuron5Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron5Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5+DOWN*0.75)
+        outputVar2 = MathTex(r"\hat{g}(x,y)").scale(1).move_to(neuron5Circle.get_right()+RIGHT*1.5)
+        outputVar2.set_color(text_color)
+        arrow6 = Arrow(start=neuron5Circle.get_right(), end=outputVar2.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        line4_o = Line(neuron1Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line5_o = Line(neuron2Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line6_o = Line(neuron3Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3Group = VGroup(line4_o, line5_o, line6_o)
+
+        hiddenDot = Dot(point=neuron4Circle.get_left()+RIGHT*0.1+UP*0.75, color=blue_color)
+
+        line7_o = Line(neuron1Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line8_o = Line(neuron2Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line9_o = Line(neuron3Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line4Group = VGroup(line7_o, line8_o, line9_o)
+
+        neuron4Circle.shift(UP*0.75)
+        outputVar.shift(UP*0.75)
+        arrow5.shift(UP*0.75)
+
+        NNnetworkGroup = VGroup(inpGroup, neuron1Circle, neuron2Circle, neuron3Circle, neuron4Circle,
+                               outputVar, arrow5, line1Group,
+                               neuron5Circle, outputVar2, arrow6, line3Group,
+                               line4Group)
+
+        self.play(FadeOut(NNVectorForm4))
+        self.play(NNVectorForm5.animate.move_to(UP*1.5))
+        self.play(Create(NNnetworkGroup))
+
+        self.wait(1)
+
+class DeepNetworks9(Scene):
+    def construct(self):
+
+        titleText = Text("Deep Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        NNVectorForm5 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(3)}\sigma\left(\mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right) + \mathbf{b}^{(2)}\right)").scale(1)
+        NNVectorForm5.set_color(text_color)
+        NNVectorForm5.move_to(DOWN*1)
+
+        NNVectorForm5.move_to(UP*1.5)
+
+        self.add(NNVectorForm5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        neuron5Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron5Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5+DOWN*0.75)
+        outputVar2 = MathTex(r"\hat{g}(x,y)").scale(1).move_to(neuron5Circle.get_right()+RIGHT*1.5)
+        outputVar2.set_color(text_color)
+        arrow6 = Arrow(start=neuron5Circle.get_right(), end=outputVar2.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        line4_o = Line(neuron1Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line5_o = Line(neuron2Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line6_o = Line(neuron3Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3Group = VGroup(line4_o, line5_o, line6_o)
+
+        hiddenDot = Dot(point=neuron4Circle.get_left()+RIGHT*0.1+UP*0.75, color=blue_color)
+
+        line7_o = Line(neuron1Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line8_o = Line(neuron2Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line9_o = Line(neuron3Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line4Group = VGroup(line7_o, line8_o, line9_o)
+
+        neuron4Circle.shift(UP*0.75)
+        outputVar.shift(UP*0.75)
+        arrow5.shift(UP*0.75)
+
+        NNnetworkGroup = VGroup(inpGroup, neuron1Circle, neuron2Circle, neuron3Circle, neuron4Circle,
+                               outputVar, arrow5, line1Group,
+                               neuron5Circle, outputVar2, arrow6, line3Group,
+                               line4Group)
+
+        self.add(NNnetworkGroup)
+
+        # creating new circle by shifting the existing neuron4Circle to the right
+        neuron1CircleNew = neuron1Circle.copy().shift(RIGHT*2.5)
+        neuron2CircleNew = neuron2Circle.copy().shift(RIGHT*2.5)
+        neuron3CircleNew = neuron3Circle.copy().shift(RIGHT*2.5)
+
+        # creating line groups
+        line1_1new = Line(neuron1CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line1_2new = Line(neuron1CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line1_3new = Line(neuron1CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line2_1new = Line(neuron2CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line2_2new = Line(neuron2CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line2_3new = Line(neuron2CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line3_1new = Line(neuron3CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line3_2new = Line(neuron3CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line3_3new = Line(neuron3CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line1GroupNew = VGroup(line1_1new, line1_2new, line1_3new, line2_1new,
+                               line2_2new, line2_3new, line3_1new, line3_2new, line3_3new)
+
+        line1new_4 = Line(neuron1CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line2new_4 = Line(neuron2CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3new_4 = Line(neuron3CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line1new_5 = Line(neuron1CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line2new_5 = Line(neuron2CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3new_5 = Line(neuron3CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3GroupNew = VGroup(line1new_4, line2new_4, line3new_4,
+                               line1new_5, line2new_5, line3new_5)
+
+        self.play(FadeOut(line3Group), FadeOut(line4Group),
+                  neuron5Circle.animate.shift(RIGHT*2.5),
+                  neuron4Circle.animate.shift(RIGHT*2.5),
+                  outputVar.animate.shift(RIGHT*2.5),
+                  outputVar2.animate.shift(RIGHT*2.5),
+                  arrow5.animate.shift(RIGHT*2.5),
+                  arrow6.animate.shift(RIGHT*2.5))
+
+        self.play(Create(neuron1CircleNew), Create(neuron2CircleNew), Create(neuron3CircleNew))
+        self.play(Create(line1GroupNew), Create(line3GroupNew))
+
+
+        self.wait(1)
+
+class HyperParameterTuning(Scene):
+    def construct(self):
+
+        titleText2 = Text("Deep Networks", font_size=34)
+        titleText2.set_color(blue_color)
+        titleText2.move_to(UP*3.0)
+
+        self.add(titleText2)
+
+        NNVectorForm5 = MathTex(r"\hat{\mathbf{f}}(\mathbf{x}) = \mathbf{W}^{(3)}\sigma\left(\mathbf{W}^{(2)} \sigma\left(\mathbf{W}^{(1)} \mathbf{x} + \mathbf{b}^{(1)}\right) + \mathbf{b}^{(2)}\right)").scale(1)
+        NNVectorForm5.set_color(text_color)
+        NNVectorForm5.move_to(DOWN*1)
+
+        NNVectorForm5.move_to(UP*1.5)
+
+        self.add(NNVectorForm5)
+
+        # input elements
+        xInp = MathTex(r"x").scale(1)
+        xInp.set_color(text_color).move_to(LEFT*4.5+DOWN*0.5)
+        yInp = MathTex(r"y").scale(1)
+        yInp.set_color(text_color).move_to(LEFT*4.5+DOWN*1.5)
+        cInp = MathTex(r"1").scale(1)
+        cInp.set_color(text_color).move_to(LEFT*4.5+DOWN*2.5)
+        inpGroup = VGroup(xInp, yInp, cInp)
+
+        # creating a circle representing neuron of the first layer of the NN2DExpressionN3
+        neuron1Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1Circle.move_to(inpGroup.get_right()+RIGHT*2.5+UP*1.5)
+
+        # creating second neuron circle for the second layer of the NN2DExpressionN3
+        neuron2Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2Circle.move_to(inpGroup.get_right()+RIGHT*2.5)
+
+        # creating third neuron circle for the third layer of the NN2DExpressionN3
+        neuron3Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3Circle.move_to(inpGroup.get_right()+RIGHT*2.5+DOWN*1.5)
+
+        # creating a circle representing neuron of the output layer of the NN2DExpressionN3
+        neuron4Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron4Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5)
+
+        # drawing output variable
+        outputVar = MathTex(r"\hat{f}(x,y)").scale(1).move_to(neuron4Circle.get_right()+RIGHT*1.5)
+        outputVar.set_color(text_color)
+
+        # drawing arrow to output variable
+        arrow5 = Arrow(start=neuron4Circle.get_right(), end=outputVar.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        # drawing connecting lines
+        line1_1 = Line(xInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_2 = Line(yInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1_3 = Line(cInp.get_right(), neuron1Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_1 = Line(xInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_2 = Line(yInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line2_3 = Line(cInp.get_right(), neuron2Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_1 = Line(xInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_2 = Line(yInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line3_3 = Line(cInp.get_right(), neuron3Circle.get_left(),
+                        color=text_color, stroke_width=1)
+        line1Group = VGroup(line1_1, line1_2, line1_3, line2_1,
+                            line2_2, line2_3, line3_1, line3_2, line3_3)
+
+        line1_o = Line(neuron1Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2_o = Line(neuron2Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3_o = Line(neuron3Circle.get_right(), neuron4Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line2Group = VGroup(line1_o, line2_o, line3_o)
+
+        neuron5Circle = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron5Circle.move_to(neuron2Circle.get_right()+RIGHT*2.5+DOWN*0.75)
+        outputVar2 = MathTex(r"\hat{g}(x,y)").scale(1).move_to(neuron5Circle.get_right()+RIGHT*1.5)
+        outputVar2.set_color(text_color)
+        arrow6 = Arrow(start=neuron5Circle.get_right(), end=outputVar2.get_left(),
+                       buff=0.1, color=text_color, stroke_width=1, tip_length=0.2)
+
+        line4_o = Line(neuron1Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line5_o = Line(neuron2Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line6_o = Line(neuron3Circle.get_right(), neuron5Circle.get_left(),
+                       color=text_color, stroke_width=1)
+        line3Group = VGroup(line4_o, line5_o, line6_o)
+
+        hiddenDot = Dot(point=neuron4Circle.get_left()+RIGHT*0.1+UP*0.75, color=blue_color)
+
+        line7_o = Line(neuron1Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line8_o = Line(neuron2Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line9_o = Line(neuron3Circle.get_right(), hiddenDot.get_left(),
+                       color=text_color, stroke_width=1)
+        line4Group = VGroup(line7_o, line8_o, line9_o)
+
+        neuron4Circle.shift(UP*0.75)
+        outputVar.shift(UP*0.75)
+        arrow5.shift(UP*0.75)
+
+        NNnetworkGroup = VGroup(inpGroup, neuron1Circle, neuron2Circle, neuron3Circle, neuron4Circle,
+                               outputVar, arrow5, line1Group,
+                               neuron5Circle, outputVar2, arrow6, )
+
+        self.add(NNnetworkGroup)
+
+        # creating new circle by shifting the existing neuron4Circle to the right
+        neuron1CircleNew = neuron1Circle.copy().shift(RIGHT*2.5)
+        neuron2CircleNew = neuron2Circle.copy().shift(RIGHT*2.5)
+        neuron3CircleNew = neuron3Circle.copy().shift(RIGHT*2.5)
+
+        # creating line groups
+        line1_1new = Line(neuron1CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line1_2new = Line(neuron1CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line1_3new = Line(neuron1CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line2_1new = Line(neuron2CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line2_2new = Line(neuron2CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line2_3new = Line(neuron2CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line3_1new = Line(neuron3CircleNew.get_left(),
+                          neuron1Circle.get_right(), color=text_color, stroke_width=1)
+        line3_2new = Line(neuron3CircleNew.get_left(),
+                          neuron2Circle.get_right(), color=text_color, stroke_width=1)
+        line3_3new = Line(neuron3CircleNew.get_left(),
+                          neuron3Circle.get_right(), color=text_color, stroke_width=1)
+        line1GroupNew = VGroup(line1_1new, line1_2new, line1_3new, line2_1new,
+                               line2_2new, line2_3new, line3_1new, line3_2new, line3_3new)
+
+        line1new_4 = Line(neuron1CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line2new_4 = Line(neuron2CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3new_4 = Line(neuron3CircleNew.get_right(), neuron4Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line1new_5 = Line(neuron1CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line2new_5 = Line(neuron2CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3new_5 = Line(neuron3CircleNew.get_right(), neuron5Circle.get_left()+RIGHT*2.5,
+                         color=text_color, stroke_width=1)
+        line3GroupNew = VGroup(line1new_4, line2new_4, line3new_4,
+                               line1new_5, line2new_5, line3new_5)
+
+        neuron5Circle.shift(RIGHT*2.5)
+        neuron4Circle.shift(RIGHT*2.5)
+        outputVar.shift(RIGHT*2.5)
+        outputVar2.shift(RIGHT*2.5)
+        arrow5.shift(RIGHT*2.5)
+        arrow6.shift(RIGHT*2.5)
+
+        self.add(neuron1CircleNew, neuron2CircleNew, neuron3CircleNew, line1GroupNew, line3GroupNew)
+
+        NNgroup = VGroup(inpGroup, neuron1Circle, neuron2Circle, neuron3Circle, neuron4Circle,
+                        outputVar, arrow5, line1Group,
+                        neuron5Circle, outputVar2, arrow6, line3Group,
+                        neuron1CircleNew, neuron2CircleNew, neuron3CircleNew, line1GroupNew, line3GroupNew)
+
+        # self.play(FadeOut(line3Group), FadeOut(line4Group),
+        #           neuron5Circle.animate.shift(RIGHT*2.5),
+        #           neuron4Circle.animate.shift(RIGHT*2.5),
+        #           outputVar.animate.shift(RIGHT*2.5),
+        #           outputVar2.animate.shift(RIGHT*2.5),
+        #           arrow5.animate.shift(RIGHT*2.5),
+        #           arrow6.animate.shift(RIGHT*2.5))
+
+        # self.play(Create(neuron1CircleNew), Create(neuron2CircleNew), Create(neuron3CircleNew))
+        # self.play(Create(line1GroupNew), Create(line3GroupNew))
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.play(FadeOut(NNgroup),FadeOut(NNVectorForm5))
+        self.play(Transform(titleText2, titleText))
+
+
+        self.wait(1)
+
+class HyperParameterTuning2(Scene):
+    def construct(self):
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x+2)+0.4*np.sin(2*np.pi*2.3*x+0.5+2)+0.3*np.sin(2*np.pi*4.7*x+1.2+2)+0.2*np.sin(2*np.pi*7*x+2), color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.shift(DOWN*1.5)
+
+        # creating wide network representation
+        inpWide = MathTex(r"\mathbf{x}").scale(1)
+        inpWide.set_color(text_color).move_to(LEFT)
+        neuron1CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1CircleWide.move_to(inpWide.get_right()+RIGHT*1.0+UP*0.5)
+        neuron2CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2CircleWide.move_to(inpWide.get_right()+RIGHT*1.0)
+        neuron3CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3CircleWide.move_to(inpWide.get_right()+RIGHT*1.0+DOWN*1.3)
+        vDots = MathTex(r"\vdots").scale(1).move_to(inpWide.get_right()+RIGHT*1.0+DOWN*0.6)
+        vDots.set_color(text_color)
+        outWide = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(neuron2CircleWide.get_right()+RIGHT*1.5)
+        outWide.set_color(text_color)
+        line1Wide = Line(inpWide.get_right(), neuron1CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line2Wide = Line(inpWide.get_right(), neuron2CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line3Wide = Line(inpWide.get_right(), neuron3CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line4Wide = Line(neuron1CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line5Wide = Line(neuron2CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line6Wide = Line(neuron3CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        wideNetText = Text("Wide Network", font_size=24).set_color(text_color).move_to(neuron3CircleWide.get_bottom()+DOWN*0.5)
+
+        wideNetGroup = VGroup(inpWide, neuron1CircleWide, neuron2CircleWide, neuron3CircleWide,
+                            vDots, outWide, line1Wide, line2Wide, line3Wide, line4Wide, line5Wide, line6Wide,
+                            wideNetText)
+        wideNetGroup.shift(RIGHT*3+UP*1.5)
+
+        # creating skinny network representation
+        inpSkinny = MathTex(r"\mathbf{x}").scale(1)
+        inpSkinny.set_color(text_color).move_to(LEFT)
+        neuron1CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1CircleSkinny.move_to(inpSkinny.get_right()+RIGHT*0.5)
+        neuron2CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2CircleSkinny.move_to(neuron1CircleSkinny.get_right()+RIGHT*0.5)
+        neuron3CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3CircleSkinny.move_to(inpSkinny.get_right()+RIGHT*2.5)
+        hDots = MathTex(r"\dots").scale(1).move_to(neuron2CircleSkinny.get_right()+RIGHT*0.5)
+        hDots.set_color(text_color)
+        outSkinny = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(neuron3CircleSkinny.get_right()+RIGHT*1)
+        outSkinny.set_color(text_color)
+        line1Skinny = Line(inpSkinny.get_right(), neuron1CircleSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        line2Skinny = Line(neuron1CircleSkinny.get_right(), neuron2CircleSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        line3Skinny = Line(neuron3CircleSkinny.get_right(), outSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        skinnyNetText = Text("Skinny Network", font_size=24).set_color(text_color).move_to(neuron3CircleSkinny.get_bottom()+DOWN*0.5)
+        skinnyNetGroup = VGroup(inpSkinny, neuron1CircleSkinny, neuron2CircleSkinny, neuron3CircleSkinny,
+                            outSkinny, line1Skinny, line2Skinny, line3Skinny, hDots,
+                            skinnyNetText)
+        skinnyNetGroup.shift(RIGHT*2+DOWN*2.5)
+
+        additionalText = Text("Both are extreme ends!", font_size=24)
+        additionalText.set_color(text_color)
+        additionalText.move_to(DOWN*2.5+LEFT*3)
+
+
+        self.play(Create(sineCurveGroup3))
+        self.wait(2)
+        self.play(Create(wideNetGroup))
+        self.wait(2)
+        self.play(Create(skinnyNetGroup))
+        self.wait(2)
+        self.play(Create(additionalText))
+
+        self.wait(1)
+
+class HyperParameterTuning3(Scene):
+    def construct(self):
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x+2)+0.4*np.sin(2*np.pi*2.3*x+0.5+2)+0.3*np.sin(2*np.pi*4.7*x+1.2+2)+0.2*np.sin(2*np.pi*7*x+2), color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.shift(DOWN*1.5)
+
+        # creating wide network representation
+        inpWide = MathTex(r"\mathbf{x}").scale(1)
+        inpWide.set_color(text_color).move_to(LEFT)
+        neuron1CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1CircleWide.move_to(inpWide.get_right()+RIGHT*1.0+UP*0.5)
+        neuron2CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2CircleWide.move_to(inpWide.get_right()+RIGHT*1.0)
+        neuron3CircleWide = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3CircleWide.move_to(inpWide.get_right()+RIGHT*1.0+DOWN*1.3)
+        vDots = MathTex(r"\vdots").scale(1).move_to(inpWide.get_right()+RIGHT*1.0+DOWN*0.6)
+        vDots.set_color(text_color)
+        outWide = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(neuron2CircleWide.get_right()+RIGHT*1.5)
+        outWide.set_color(text_color)
+        line1Wide = Line(inpWide.get_right(), neuron1CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line2Wide = Line(inpWide.get_right(), neuron2CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line3Wide = Line(inpWide.get_right(), neuron3CircleWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line4Wide = Line(neuron1CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line5Wide = Line(neuron2CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        line6Wide = Line(neuron3CircleWide.get_right(), outWide.get_left(),
+                        color=text_color, stroke_width=1)
+        wideNetText = Text("Wide Network", font_size=24).set_color(text_color).move_to(neuron3CircleWide.get_bottom()+DOWN*0.5)
+
+        wideNetGroup = VGroup(inpWide, neuron1CircleWide, neuron2CircleWide, neuron3CircleWide,
+                            vDots, outWide, line1Wide, line2Wide, line3Wide, line4Wide, line5Wide, line6Wide,
+                            wideNetText)
+        wideNetGroup.shift(RIGHT*3+UP*1.5)
+
+        # creating skinny network representation
+        inpSkinny = MathTex(r"\mathbf{x}").scale(1)
+        inpSkinny.set_color(text_color).move_to(LEFT)
+        neuron1CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron1CircleSkinny.move_to(inpSkinny.get_right()+RIGHT*0.5)
+        neuron2CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron2CircleSkinny.move_to(neuron1CircleSkinny.get_right()+RIGHT*0.5)
+        neuron3CircleSkinny = Circle(radius=0.2, color=blue_color,
+                              fill_opacity=0.5, stroke_width=2)
+        neuron3CircleSkinny.move_to(inpSkinny.get_right()+RIGHT*2.5)
+        hDots = MathTex(r"\dots").scale(1).move_to(neuron2CircleSkinny.get_right()+RIGHT*0.5)
+        hDots.set_color(text_color)
+        outSkinny = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(neuron3CircleSkinny.get_right()+RIGHT*1)
+        outSkinny.set_color(text_color)
+        line1Skinny = Line(inpSkinny.get_right(), neuron1CircleSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        line2Skinny = Line(neuron1CircleSkinny.get_right(), neuron2CircleSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        line3Skinny = Line(neuron3CircleSkinny.get_right(), outSkinny.get_left(),
+                        color=text_color, stroke_width=1)
+        skinnyNetText = Text("Skinny Network", font_size=24).set_color(text_color).move_to(neuron3CircleSkinny.get_bottom()+DOWN*0.5)
+        skinnyNetGroup = VGroup(inpSkinny, neuron1CircleSkinny, neuron2CircleSkinny, neuron3CircleSkinny,
+                            outSkinny, line1Skinny, line2Skinny, line3Skinny, hDots,
+                            skinnyNetText)
+        skinnyNetGroup.shift(RIGHT*2+DOWN*2.5)
+
+        additionalText = Text("Both are extreme ends!", font_size=24)
+        additionalText.set_color(text_color)
+        additionalText.move_to(DOWN*2.5+LEFT*3)
+
+        self.add(sineCurveGroup3, wideNetGroup, skinnyNetGroup, additionalText)
+
+        question1 = Text("How many layers do we need?", font_size=24)
+        question1.set_color(text_color)
+        question1.move_to(UP)
+
+        question2 = Text("How many neurons per layer?", font_size=24)
+        question2.set_color(text_color)
+        question2.move_to(UP*0)
+
+        self.play(FadeOut(additionalText), FadeOut(sineCurveGroup3), FadeOut(wideNetGroup), FadeOut(skinnyNetGroup))
+        self.play(Write(question1))
+        self.wait(1)
+        self.play(Write(question2))
+
+
+
+        self.wait(1)
+
+class HyperParameterTuning4(Scene):
+    def construct(self):
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        question1 = Text("How many layers do we need?", font_size=24)
+        question1.set_color(text_color)
+        question1.move_to(UP)
+
+        question2 = Text("How many neurons per layer?", font_size=24)
+        question2.set_color(text_color)
+        question2.move_to(UP*0)
+
+        self.add(question1, question2)
+
+        answer1 = Text("There is no defined rule!", font_size=24)
+        answer1.set_color(text_color)
+        answer1.move_to(DOWN*0.5)
+
+        # write in bold text "Hyperparameter tuning" in red color
+        answer2 = Text("Hyperparameters ", font_size=24, weight=BOLD)
+        answer2.set_color(red_color)
+        answer2.move_to(DOWN*1.5)
+
+        self.play(question1.animate.shift(UP*0.5), question2.animate.shift(UP*0.5))
+        self.play(Write(answer1))
+        self.wait(1)
+        self.play(Write(answer2))
+
+        self.wait(1)
+
+class HyperParameterTuning5(Scene):
+    def construct(self):
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        question1 = Text("How many layers do we need?", font_size=24)
+        question1.set_color(text_color)
+        question1.move_to(UP)
+
+        question2 = Text("How many neurons per layer?", font_size=24)
+        question2.set_color(text_color)
+        question2.move_to(UP*0)
+
+        question1.shift(UP*0.5)
+        question2.shift(UP*0.5)
+
+        answer1 = Text("There is no defined rule!", font_size=24)
+        answer1.set_color(text_color)
+        answer1.move_to(DOWN*0.5)
+
+        # write in bold text "Hyperparameter tuning" in red color
+        answer2 = Text("Hyperparameters ", font_size=24, weight=BOLD)
+        answer2.set_color(red_color)
+        answer2.move_to(DOWN*1.5)
+
+        # list of hyperparameters in bullet points
+        hyperparameters = BulletedList(
+            "Number of layers",
+            "Number of neurons per layer",
+            "Activation functions etc...",
+            font_size=30,
+        )
+        hyperparameters.set_color(text_color)
+        hyperparameters.move_to(DOWN*0.5)
+
+        self.add(question1, question2, answer1, answer2)
+        self.play(FadeOut(question1), FadeOut(question2), FadeOut(answer1),
+                  answer2.animate.shift(UP*3+LEFT*1.5))
+        self.play(Write(hyperparameters))
+
+        self.wait(1)
+
+class HyperParameterTuning6(Scene):
+    def construct(self):
+
+        titleText = Text("Wide vs Skinny networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # write in bold text "Hyperparameter tuning" in red color
+        answer2 = Text("Hyperparameters ", font_size=24, weight=BOLD)
+        answer2.set_color(red_color)
+        answer2.move_to(DOWN*1.5)
+        answer2.shift(UP*3+LEFT*1.5)
+
+        # list of hyperparameters in bullet points
+        hyperparameters = BulletedList(
+            "Number of layers",
+            "Number of neurons per layer",
+            "Activation functions etc...",
+            font_size=30,
+        )
+        hyperparameters.set_color(text_color)
+        hyperparameters.move_to(DOWN*0.5)
+
+        self.add(answer2, hyperparameters)
+
+        # drawing gradually decreasing deep network
+        deepNetwork = VGroup()
+        for i in range(5):
+            for j in range(5-i):
+                neuronCircle = Circle(radius=0.2, color=blue_color,
+                                      fill_opacity=0.5, stroke_width=2)
+                neuronCircle.move_to(LEFT*3+RIGHT*i*0.75+UP*(2-j*0.6)+DOWN*i*0.30)
+                deepNetwork.add(neuronCircle)
+        # interconnecting all the neurons in the deep network
+        offset = 0
+        for k in reversed(range(1,5+1)):
+            for i in range(k):
+                for j in range(k-1):
+                    line = Line(deepNetwork[i+offset].get_right(),
+                                deepNetwork[j+k+offset].get_left(), color=text_color, stroke_width=1)
+                    deepNetwork.add(line)
+            offset += k*1
+
+        inputVar = MathTex(r"\mathbf{x}").scale(1).move_to(deepNetwork.get_left()+LEFT*1.0)
+        inputVar.set_color(text_color)
+        for i in range(5):
+            line = Line(deepNetwork[i].get_left(),inputVar.get_right(), color=text_color, stroke_width=1)
+            deepNetwork.add(line)
+        outputVar = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(deepNetwork.get_right()+RIGHT*1.0)
+        outputVar.set_color(text_color)
+        line = Line(deepNetwork[14].get_right(), outputVar.get_left(), color=text_color, stroke_width=1)
+        deepNetwork.add(line)
+        deepNetwork.add(inputVar, outputVar)
+
+        deepNetwork.shift(RIGHT*4+DOWN*1.0)
+
+        deepNetworkText = Text("Community suggests - triangle form", font_size=24, weight=BOLD).set_color(text_color).move_to(deepNetwork.get_top()+UP*0.5)
+
+        # creating bulleted list
+        bulletList = BulletedList(
+            "Initial layers - simpler basis functions - more neurons",
+            "Later layers - complex basis functions - fewer neurons",
+            font_size=30,
+        )
+        bulletList.set_color(text_color)
+        bulletList.move_to(deepNetwork.get_bottom()+DOWN*1)
+
+        self.play(answer2.animate.shift(LEFT*3),
+                  hyperparameters.animate.shift(LEFT*3))
+        self.play(Create(deepNetwork), Write(deepNetworkText))
+        self.wait(1)
+        self.play(Write(bulletList))
+
+        self.wait(1)
+
+class FeaturesAndSharedRepresentation(Scene):
+    def construct(self):
+
+        titleTextOld = Text("Wide vs Skinny networks", font_size=34)
+        titleTextOld.set_color(blue_color)
+        titleTextOld.move_to(UP*3.0)
+
+        self.add(titleTextOld)
+
+        # write in bold text "Hyperparameter tuning" in red color
+        answer2 = Text("Hyperparameters ", font_size=24, weight=BOLD)
+        answer2.set_color(red_color)
+        answer2.move_to(DOWN*1.5)
+        answer2.shift(UP*3+LEFT*1.5)
+
+        # list of hyperparameters in bullet points
+        hyperparameters = BulletedList(
+            "Number of layers",
+            "Number of neurons per layer",
+            "Activation functions etc...",
+            font_size=30,
+        )
+        hyperparameters.set_color(text_color)
+        hyperparameters.move_to(DOWN*0.5)
+
+        answer2.shift(LEFT*3)
+        hyperparameters.shift(LEFT*3)
+
+        self.add(answer2, hyperparameters)
+
+        # drawing gradually decreasing deep network
+        deepNetwork = VGroup()
+        for i in range(5):
+            for j in range(5-i):
+                neuronCircle = Circle(radius=0.2, color=blue_color,
+                                      fill_opacity=0.5, stroke_width=2)
+                neuronCircle.move_to(LEFT*3+RIGHT*i*0.75+UP*(2-j*0.6)+DOWN*i*0.30)
+                deepNetwork.add(neuronCircle)
+        # interconnecting all the neurons in the deep network
+        offset = 0
+        for k in reversed(range(1,5+1)):
+            for i in range(k):
+                for j in range(k-1):
+                    line = Line(deepNetwork[i+offset].get_right(),
+                                deepNetwork[j+k+offset].get_left(), color=text_color, stroke_width=1)
+                    deepNetwork.add(line)
+            offset += k*1
+
+        inputVar = MathTex(r"\mathbf{x}").scale(1).move_to(deepNetwork.get_left()+LEFT*1.0)
+        inputVar.set_color(text_color)
+        for i in range(5):
+            line = Line(deepNetwork[i].get_left(),inputVar.get_right(), color=text_color, stroke_width=1)
+            deepNetwork.add(line)
+        outputVar = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(deepNetwork.get_right()+RIGHT*1.0)
+        outputVar.set_color(text_color)
+        line = Line(deepNetwork[14].get_right(), outputVar.get_left(), color=text_color, stroke_width=1)
+        deepNetwork.add(line)
+        deepNetwork.add(inputVar, outputVar)
+
+        deepNetwork.shift(RIGHT*4+DOWN*1.0)
+
+        deepNetworkText = Text("Community suggests - triangle form", font_size=24, weight=BOLD).set_color(text_color).move_to(deepNetwork.get_top()+UP*0.5)
+
+        # creating bulleted list
+        bulletList = BulletedList(
+            "Initial layers - simpler basis functions - more neurons",
+            "Later layers - complex basis functions - fewer neurons",
+            font_size=30,
+        )
+        bulletList.set_color(text_color)
+        bulletList.move_to(deepNetwork.get_bottom()+DOWN*1)
+
+        self.add(deepNetwork, deepNetworkText, bulletList)
+
+        titleText = Text("Features & Shared Representation", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.play(Transform(titleTextOld, titleText),
+                  FadeOut(bulletList),FadeOut(deepNetworkText),
+                  FadeOut(hyperparameters), FadeOut(answer2),
+                  deepNetwork.animate.move_to(ORIGIN+UP*0.5))
+
+        self.wait(1)
+
+class FeaturesAndSharedRepresentation2(Scene):
+    def construct(self):
+
+        titleText = Text("Features & Shared Representation", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # drawing gradually decreasing deep network
+        deepNetwork = VGroup()
+        for i in range(5):
+            for j in range(5-i):
+                neuronCircle = Circle(radius=0.2, color=blue_color,
+                                      fill_opacity=0.5, stroke_width=2)
+                neuronCircle.move_to(LEFT*3+RIGHT*i*0.75+UP*(2-j*0.6)+DOWN*i*0.30)
+                deepNetwork.add(neuronCircle)
+        # interconnecting all the neurons in the deep network
+        offset = 0
+        for k in reversed(range(1,5+1)):
+            for i in range(k):
+                for j in range(k-1):
+                    line = Line(deepNetwork[i+offset].get_right(),
+                                deepNetwork[j+k+offset].get_left(), color=text_color, stroke_width=1)
+                    deepNetwork.add(line)
+            offset += k*1
+
+        inputVar = MathTex(r"\mathbf{x}").scale(1).move_to(deepNetwork.get_left()+LEFT*1.0)
+        inputVar.set_color(text_color)
+        for i in range(5):
+            line = Line(deepNetwork[i].get_left(),inputVar.get_right(), color=text_color, stroke_width=1)
+            deepNetwork.add(line)
+        outputVar = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(deepNetwork.get_right()+RIGHT*1.0)
+        outputVar.set_color(text_color)
+        line = Line(deepNetwork[14].get_right(), outputVar.get_left(), color=text_color, stroke_width=1)
+        deepNetwork.add(line)
+        deepNetwork.add(inputVar, outputVar)
+
+        deepNetwork.move_to(ORIGIN+UP*0.5)
+
+        self.add(deepNetwork)
+
+        featuresText = Text("Features", font_size=24, weight=BOLD).set_color(text_color).move_to(deepNetwork.get_bottom()+DOWN+LEFT*3.5)
+        featuresNote = Text("- what each layer captures upon training ", font_size=24, ).set_color(text_color).move_to(featuresText.get_right()+RIGHT*3.5)
+
+        self.play(Write(featuresText))
+        self.play(Write(featuresNote))
+
+        self.wait(1)
+
+class FeaturesAndSharedRepresentation3(Scene):
+    def construct(self):
+
+        titleText = Text("Features & Shared Representation", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # drawing gradually decreasing deep network
+        deepNetwork = VGroup()
+        for i in range(5):
+            for j in range(5-i):
+                neuronCircle = Circle(radius=0.2, color=blue_color,
+                                      fill_opacity=0.5, stroke_width=2)
+                neuronCircle.move_to(LEFT*3+RIGHT*i*0.75+UP*(2-j*0.6)+DOWN*i*0.30)
+                deepNetwork.add(neuronCircle)
+        # interconnecting all the neurons in the deep network
+        offset = 0
+        for k in reversed(range(1,5+1)):
+            for i in range(k):
+                for j in range(k-1):
+                    line = Line(deepNetwork[i+offset].get_right(),
+                                deepNetwork[j+k+offset].get_left(), color=text_color, stroke_width=1)
+                    deepNetwork.add(line)
+            offset += k*1
+
+        inputVar = MathTex(r"\mathbf{x}").scale(1).move_to(deepNetwork.get_left()+LEFT*1.0)
+        inputVar.set_color(text_color)
+        for i in range(5):
+            line = Line(deepNetwork[i].get_left(),inputVar.get_right(), color=text_color, stroke_width=1)
+            deepNetwork.add(line)
+        outputVar = MathTex(r"\hat{\mathbf{f}}(\mathbf{x})").scale(1).move_to(deepNetwork.get_right()+RIGHT*1.0)
+        outputVar.set_color(text_color)
+        line = Line(deepNetwork[14].get_right(), outputVar.get_left(), color=text_color, stroke_width=1)
+        deepNetwork.add(line)
+        deepNetwork.add(inputVar, outputVar)
+
+        deepNetwork.move_to(ORIGIN+UP*0.5)
+
+        featuresText = Text("Features", font_size=24, weight=BOLD).set_color(text_color).move_to(deepNetwork.get_bottom()+DOWN+LEFT*3.5)
+        featuresNote = Text("- what each layer captures upon training ", font_size=24, ).set_color(text_color).move_to(featuresText.get_right()+RIGHT*3.5)
+
+        self.add(deepNetwork, featuresText, featuresNote)
+
+        SRText = Text("Shared Representation", font_size=24, weight=BOLD).set_color(text_color).move_to(deepNetwork.get_bottom()+2*DOWN+LEFT*3.5)
+        SRNote = Text("- each feature is represented by all its inputs", font_size=24, ).set_color(text_color).move_to(SRText.get_right()+RIGHT*3.75)
+
+        self.play(Write(SRText))
+        self.play(Write(SRNote))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.play(Write(titleText))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks2(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 0.9*np.sin(2*np.pi*x+2)+1, color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.move_to(ORIGIN+UP*0.5)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(DOWN*2.5)
+
+        self.play(Create(sineCurveGroup3))
+        self.play(Write(sineExpression))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks3(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # Create axes
+        axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label_3 = axes2.get_x_axis_label("x")
+        y_label_3 = axes2.get_y_axis_label("y")
+        x_label_3.set_color(text_color)
+        y_label_3.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve3 = axes2.plot(lambda x: 0.9*np.sin(2*np.pi*x+2)+1, color=red_color)
+
+        # scale down the axes and curve
+        axes2.scale(0.5).to_edge(UL)
+        complex_sine_curve3.scale(0.5).to_edge(UL)
+        x_label_3.move_to(LEFT).scale(0.75)
+        y_label_3.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        sineCurveGroup3 = VGroup(axes2, complex_sine_curve3, x_label_3, y_label_3)
+        sineCurveGroup3.move_to(ORIGIN+UP*0.5)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(DOWN*2.5)
+
+        self.add(sineCurveGroup3, sineExpression)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        self.play(FadeOut(sineCurveGroup3),sineExpression.animate.move_to(UP*1.5))
+        self.play(Write(objFunction))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks4(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        self.add(objFunction, sineExpression)
+
+        self.play(Write(optimizationProblem))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks5(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        self.add(objFunction, sineExpression, optimizationProblem)
+
+        self.play(Write(gradientDescent))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks6(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        sineGroup = VGroup(sineExpression, objFunction, optimizationProblem, gradientDescent)
+
+        self.add(sineGroup)
+
+        # drawing vertical line in the middle
+        verticalLine = Line(start=UP*2, end=DOWN*3.5, color=text_color, stroke_width=2)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+
+        self.play(sineGroup.animate.shift(LEFT*3.5),
+                  Create(verticalLine))
+
+        self.play(Write(nnExpression))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks7(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        sineGroup = VGroup(sineExpression, objFunction, optimizationProblem, gradientDescent)
+        sineGroup.shift(LEFT*3.5)
+
+        # drawing vertical line in the middle
+        verticalLine = Line(start=UP*2, end=DOWN*3.5, color=text_color, stroke_width=2)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression)
+
+        self.add(sineGroup, nnGroup, verticalLine)
+
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+
+        self.play(Write(nnLossFunction))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks8(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        sineGroup = VGroup(sineExpression, objFunction, optimizationProblem, gradientDescent)
+        sineGroup.shift(LEFT*3.5)
+
+        # drawing vertical line in the middle
+        verticalLine = Line(start=UP*2, end=DOWN*3.5, color=text_color, stroke_width=2)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression, nnLossFunction)
+
+        self.add(sineGroup, nnGroup, verticalLine)
+
+        # NN objetive function
+        nnObjFunction = MathTex(r"\min_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W})").scale(0.75)
+        nnObjFunction.set_color(text_color)
+        nnObjFunction.move_to(DOWN*1.5+RIGHT*3.5)
+
+        self.play(Write(nnObjFunction))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks9(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        sineGroup = VGroup(sineExpression, objFunction, optimizationProblem, gradientDescent)
+        sineGroup.shift(LEFT*3.5)
+
+        # drawing vertical line in the middle
+        verticalLine = Line(start=UP*2, end=DOWN*3.5, color=text_color, stroke_width=2)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+        # NN objetive function
+        nnObjFunction = MathTex(r"\min_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W})").scale(0.75)
+        nnObjFunction.set_color(text_color)
+        nnObjFunction.move_to(DOWN*1.5+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression, nnLossFunction, nnObjFunction)
+
+        self.add(sineGroup, nnGroup, verticalLine)
+
+        # weights update step
+        weightsUpdate = MathTex(r"\mathbf{W}_{k+1} = \mathbf{W}_k - \eta \nabla_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W}_k)").scale(0.75)
+        weightsUpdate.set_color(text_color)
+        weightsUpdate.move_to(DOWN*3+RIGHT*3.5)
+
+        self.play(Write(weightsUpdate))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks10(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        sineExpression = MathTex(r"\hat{f}(x,\mathbf{a}) = a_0 + a_1\sin(a_2x+a_3)").scale(0.75)
+        sineExpression.set_color(text_color)
+        sineExpression.move_to(UP*1.5)
+
+        # writing objective function
+        objFunction = MathTex(r"f_{obj} = \sum_{i=1}^N \left(y_i - \hat{f}(x,\mathbf{a})\right)^2").scale(0.75)
+        objFunction.set_color(text_color)
+        objFunction.move_to(ORIGIN)
+
+        # writing optimization problem definition
+        optimizationProblem = MathTex(r"\min_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a})").scale(0.75)
+        optimizationProblem.set_color(text_color)
+        optimizationProblem.move_to(DOWN*1.5)
+
+        # gradient descent statement
+        gradientDescent = MathTex(r"\mathbf{a}_{k+1} = \mathbf{a}_k - \eta \nabla_{\mathbf{a}} f_{obj}(\mathbf{x},\mathbf{y},\mathbf{a}_k)").scale(0.75)
+        gradientDescent.set_color(text_color)
+        gradientDescent.move_to(DOWN*3)
+
+        sineGroup = VGroup(sineExpression, objFunction, optimizationProblem, gradientDescent)
+        sineGroup.shift(LEFT*3.5)
+
+        # drawing vertical line in the middle
+        verticalLine = Line(start=UP*2, end=DOWN*3.5, color=text_color, stroke_width=2)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+        # NN objetive function
+        nnObjFunction = MathTex(r"\min_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W})").scale(0.75)
+        nnObjFunction.set_color(text_color)
+        nnObjFunction.move_to(DOWN*1.5+RIGHT*3.5)
+        # weights update step
+        weightsUpdate = MathTex(r"\mathbf{W}_{k+1} = \mathbf{W}_k - \eta \nabla_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W}_k)").scale(0.75)
+        weightsUpdate.set_color(text_color)
+        weightsUpdate.move_to(DOWN*3+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression, nnLossFunction, nnObjFunction, weightsUpdate)
+
+        self.add(sineGroup, nnGroup, verticalLine)
+
+        # loss functions text
+        lossFunctionText = Text("Different loss functions: MAE,MSE ...", font_size=24,).set_color(text_color).move_to(ORIGIN+RIGHT*3.5)
+
+        self.play(FadeOut(sineGroup), FadeOut(verticalLine),
+                  nnGroup.animate.shift(LEFT*6.5))
+        self.play(Write(lossFunctionText))
+
+        self.wait(1)
+
+class TrainingNeuralNetworks11(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+        # NN objetive function
+        nnObjFunction = MathTex(r"\min_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W})").scale(0.75)
+        nnObjFunction.set_color(text_color)
+        nnObjFunction.move_to(DOWN*1.5+RIGHT*3.5)
+        # weights update step
+        weightsUpdate = MathTex(r"\mathbf{W}_{k+1} = \mathbf{W}_k - \eta \nabla_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W}_k)").scale(0.75)
+        weightsUpdate.set_color(text_color)
+        weightsUpdate.move_to(DOWN*3+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression, nnLossFunction, nnObjFunction, weightsUpdate)
+        nnGroup.shift(LEFT*6.5)
+
+        # loss functions text
+        lossFunctionText = Text("Different loss functions: MAE,MSE ...", font_size=24,).set_color(text_color).move_to(ORIGIN+RIGHT*3.5)
+
+        self.add(nnGroup,lossFunctionText)
+
+        # backpropagation text
+        backpropagationText = Text(" - Backpropagation", font_size=24,).set_color(text_color).move_to(DOWN*1.5+RIGHT*4.0)
+        backPropMathText = MathTex(r"\nabla_{\mathbf{W}}L(.)").scale(0.75).set_color(text_color).move_to(backpropagationText.get_left()+LEFT*1.0)
+
+        self.play(Write(backpropagationText), Write(backPropMathText))
+
+
+        self.wait(1)
+
+class TrainingNeuralNetworks12(Scene):
+    def construct(self):
+
+        titleText = Text("Training Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # deep network expression
+        nnExpression = MathTex(r"\hat{f}_{NN}(x,\mathbf{W}) = \sigma(\mathbf{W}_1\sigma(\dots\sigma(\mathbf{W}_L\mathbf{x} + \mathbf{b}_L)))").scale(0.75)
+        nnExpression.set_color(text_color)
+        nnExpression.move_to(UP*1.5+RIGHT*3.5)
+        # loss function
+        nnLossFunction = MathTex(r"L = \sum_{i=1}^N \left(y_i - \hat{f}_{NN}(x,\mathbf{W})\right)^2").scale(0.75)
+        nnLossFunction.set_color(text_color)
+        nnLossFunction.move_to(ORIGIN+RIGHT*3.5)
+        # NN objetive function
+        nnObjFunction = MathTex(r"\min_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W})").scale(0.75)
+        nnObjFunction.set_color(text_color)
+        nnObjFunction.move_to(DOWN*1.5+RIGHT*3.5)
+        # weights update step
+        weightsUpdate = MathTex(r"\mathbf{W}_{k+1} = \mathbf{W}_k - \eta \nabla_{\mathbf{W}} L(\mathbf{x},\mathbf{y},\mathbf{W}_k)").scale(0.75)
+        weightsUpdate.set_color(text_color)
+        weightsUpdate.move_to(DOWN*3+RIGHT*3.5)
+
+        nnGroup = VGroup(nnExpression, nnLossFunction, nnObjFunction, weightsUpdate)
+        nnGroup.shift(LEFT*6.5)
+
+        # loss functions text
+        lossFunctionText = Text("Different loss functions: MAE,MSE ...", font_size=24,).set_color(text_color).move_to(ORIGIN+RIGHT*3.5)
+
+        # backpropagation text
+        backpropagationText = Text(" - Backpropagation", font_size=24,).set_color(text_color).move_to(DOWN*1.5+RIGHT*4.0)
+        backPropMathText = MathTex(r"\nabla_{\mathbf{W}}L(.)").scale(0.75).set_color(text_color).move_to(backpropagationText.get_left()+LEFT*1.0)
+
+        self.add(nnGroup,lossFunctionText, backpropagationText, backPropMathText)
+
+        # multiline text
+        multilineText = Text("Different training algorithms ", font_size=24,).set_color(text_color).move_to(DOWN*2.5+RIGHT*4.0)
+        multilineText2 = Text("SGD, RMSProp, ADAM ...", font_size=24,).set_color(text_color).move_to(multilineText.get_bottom()+DOWN*0.5)
+
+        self.play(Write(multilineText))
+        self.play(Write(multilineText2))
+
+        self.wait(1)
+
+class PhysicsInformation(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.play(Write(titleText))
+
+        self.wait(1)
+
+class PhysicsInformation2(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowText = Text("velocity field data", font_size=24).set_color(text_color).move_to(UP*1)
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(ORIGIN)
+
+        self.play(Write(fluidFlowText),Write(fluidFlowData))
+
+        self.wait(1)
+
+class PhysicsInformation3(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowText = Text("velocity field data", font_size=24).set_color(text_color).move_to(UP*1)
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(ORIGIN)
+
+        self.add(fluidFlowText, fluidFlowData)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(ORIGIN)
+
+        self.play(FadeOut(fluidFlowText),fluidFlowData.animate.move_to(UP*2))
+        self.play(Write(velocityNet))
+
+        self.wait(1)
+
+class PhysicsInformation4(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(ORIGIN)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+
+        self.play(velocityNet.animate.move_to(UP))
+        self.play(Write(dataInformationText))
+        self.wait(1)
+        self.play(Write(dataLossFunction))
+
+        self.wait(1)
+
+class PhysicsInformation5(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+
+        self.add(dataInformationText, dataLossFunction)
+
+        self.play(Write(dataLossInference))
+
+        self.wait(1)
+
+class PhysicsInformation6(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+        dataGroup = VGroup(dataInformationText, dataLossFunction, dataLossInference)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+
+        self.add(dataGroup)
+
+        self.play(dataGroup.animate.shift(LEFT*3.5))
+        self.play(Write(physicsInformationText))
+
+        self.wait(1)
+
+class PhysicsInformation7(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+        dataGroup = VGroup(dataInformationText, dataLossFunction, dataLossInference)
+        dataGroup.shift(LEFT*3.5)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+        continuityEquation = MathTex(r"\nabla \cdot \hat{\mathbf{u}}_i = 0").scale(0.75)
+        continuityEquation.set_color(text_color)
+        continuityEquation.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+
+        physicsGroup = VGroup(physicsInformationText)
+
+        self.add(dataGroup, physicsGroup)
+
+        self.play(Write(continuityEquation))
+
+        self.wait(1)
+
+class PhysicsInformation8(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+        dataGroup = VGroup(dataInformationText, dataLossFunction, dataLossInference)
+        dataGroup.shift(LEFT*3.5)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+        continuityEquation = MathTex(r"\nabla \cdot \hat{\mathbf{u}}_i = 0").scale(0.75)
+        continuityEquation.set_color(text_color)
+        continuityEquation.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+        physicsLossFunction = MathTex(r"L_P = \sum_{i=1}^N \left(\nabla \cdot \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        physicsLossFunction.set_color(text_color)
+        physicsLossFunction.move_to(continuityEquation.get_bottom()+DOWN*1.0)
+
+        physicsGroup = VGroup(physicsInformationText,continuityEquation)
+
+        self.add(dataGroup, physicsGroup)
+
+        self.play(Write(physicsLossFunction))
+
+        self.wait(1)
+
+class PhysicsInformation9(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+        dataGroup = VGroup(dataInformationText, dataLossFunction, dataLossInference)
+        dataGroup.shift(LEFT*3.5)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+        continuityEquation = MathTex(r"\nabla \cdot \hat{\mathbf{u}}_i = 0").scale(0.75)
+        continuityEquation.set_color(text_color)
+        continuityEquation.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+        physicsLossFunction = MathTex(r"L_P = \sum_{i=1}^N \left(\nabla \cdot \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        physicsLossFunction.set_color(text_color)
+        physicsLossFunction.move_to(continuityEquation.get_bottom()+DOWN*1.0)
+        physicsLossInference = Text("physics satisfied inference", font_size=24,).set_color(text_color).move_to(physicsLossFunction.get_bottom()+DOWN*0.5)
+
+        physicsGroup = VGroup(physicsInformationText,continuityEquation,physicsLossFunction)
+
+        self.add(dataGroup, physicsGroup)
+
+        self.play(Write(physicsLossInference))
+
+        self.wait(1)
+
+class PhysicsInformation10(Scene):
+    def construct(self):
+
+        titleText = Text("Information to the networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataLossInference = Text("Can give unrealistic inference", font_size=24,).set_color(text_color).move_to(dataLossFunction.get_bottom()+DOWN*0.5)
+        dataGroup = VGroup(dataInformationText, dataLossFunction, dataLossInference)
+        dataGroup.shift(LEFT*3.5)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+        continuityEquation = MathTex(r"\nabla \cdot \hat{\mathbf{u}}_i = 0").scale(0.75)
+        continuityEquation.set_color(text_color)
+        continuityEquation.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+        physicsLossFunction = MathTex(r"L_P = \sum_{i=1}^N \left(\nabla \cdot \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        physicsLossFunction.set_color(text_color)
+        physicsLossFunction.move_to(continuityEquation.get_bottom()+DOWN*1.0)
+        physicsLossInference = Text("physics satisfied inference", font_size=24,).set_color(text_color).move_to(physicsLossFunction.get_bottom()+DOWN*0.5)
+
+        physicsGroup = VGroup(physicsInformationText,continuityEquation,physicsLossFunction,physicsLossInference)
+
+        # total loss
+        totalLossText = Text("Total loss function", font_size=24, weight=BOLD).set_color(text_color).move_to(ORIGIN+DOWN*2)
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+        totalLossEqn.move_to(totalLossText.get_bottom()+DOWN*0.5)
+        omegaText = MathTex(r"\omega \in [0,1] \text{- weighting scale - hyperparameter}").scale(0.75)
+        omegaText.set_color(text_color)
+        omegaText.move_to(totalLossEqn.get_bottom()+DOWN*0.5)
+
+        self.add(dataGroup, physicsGroup)
+
+        self.play(FadeOut(dataLossInference), FadeOut(physicsLossInference),
+                  FadeOut(continuityEquation), physicsLossFunction.animate.move_to(physicsInformationText.get_bottom()+DOWN*1.0))
+        self.play(Write(totalLossText))
+        self.play(Write(totalLossEqn))
+        self.play(Write(omegaText))
+
+
+        self.wait(1)
+
+class PINN(Scene):
+    def construct(self):
+
+        titleTextOld = Text("Information to the networks", font_size=34)
+        titleTextOld.set_color(blue_color)
+        titleTextOld.move_to(UP*3.0)
+
+        self.add(titleTextOld)
+
+        # fluid flow system
+        fluidFlowData = MathTex(r"\mathbf{x}_i = [x_i \ y_i \ z_i]^T, \mathbf{u}_i = [u_i \ v_i \ w_i]^T, \ i = 1,2,\dots,N").scale(0.75)
+        fluidFlowData.set_color(text_color)
+        fluidFlowData.move_to(UP*2)
+
+        # velocityNet
+        velocityNet = MathTex(r"\hat{\mathbf{u}}_i = f_{NN}(\mathbf{x}_i,\mathbf{W})").scale(0.75)
+        velocityNet.set_color(text_color)
+        velocityNet.move_to(UP)
+
+        self.add(fluidFlowData, velocityNet)
+
+        # data information
+        dataInformationText = Text("Data information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN)
+        dataLossFunction = MathTex(r"L_D = \sum_{i=1}^N \left(\mathbf{u}_i - \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        dataLossFunction.set_color(text_color)
+        dataLossFunction.move_to(dataInformationText.get_bottom()+DOWN*1.0)
+        dataGroup = VGroup(dataInformationText, dataLossFunction)
+        dataGroup.shift(LEFT*3.5)
+
+        # physics information
+        physicsInformationText = Text("Physics information", font_size=24, weight=BOLD).set_color(blue_color).move_to(ORIGIN+RIGHT*3.5)
+        continuityEquation = MathTex(r"\nabla \cdot \hat{\mathbf{u}}_i = 0").scale(0.75)
+        continuityEquation.set_color(text_color)
+        continuityEquation.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+        physicsLossFunction = MathTex(r"L_P = \sum_{i=1}^N \left(\nabla \cdot \hat{\mathbf{u}}_i\right)^2").scale(0.75)
+        physicsLossFunction.set_color(text_color)
+        physicsLossFunction.move_to(continuityEquation.get_bottom()+DOWN*1.0)
+        physicsLossFunction.move_to(physicsInformationText.get_bottom()+DOWN*1.0)
+
+        physicsGroup = VGroup(physicsInformationText,physicsLossFunction)
+
+        # total loss
+        totalLossText = Text("Total loss function", font_size=24, weight=BOLD).set_color(text_color).move_to(ORIGIN+DOWN*2)
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+        totalLossEqn.move_to(totalLossText.get_bottom()+DOWN*0.5)
+        omegaText = MathTex(r"\omega \in [0,1] \text{- weighting scale - hyperparameter}").scale(0.75)
+        omegaText.set_color(text_color)
+        omegaText.move_to(totalLossEqn.get_bottom()+DOWN*0.5)
+
+        self.add(dataGroup, physicsGroup, totalLossText, totalLossEqn, omegaText)
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+
+        self.play(Transform(titleTextOld, titleText))
+        self.play(FadeOut(dataGroup),FadeOut(physicsGroup),FadeOut(totalLossText),
+                  FadeOut(omegaText),FadeOut(fluidFlowData),FadeOut(velocityNet))
+        self.play(Write(PINNsText))
+        self.play(totalLossEqn.animate.move_to(PINNsText.get_right()+RIGHT*2.0))
+
+        self.wait(1)
+
+class PINN2(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        self.add(PINNsText, totalLossEqn)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        self.play(Write(PINNTypesText))
+        self.play(Write(PINNList))
+
+        self.wait(1)
+
+class PINN3(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList)
+
+        # Physics Loss types
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+RIGHT*2.5)
+        physicsLossList = BulletedList(
+            "Differential equation loss",
+            "Variational loss",
+            "Algebriac loss",
+            "Inequality loss",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
+
+        self.play(Write(physicsLossTypesText))
+        self.play(Write(physicsLossList))
+
+        self.wait(1)
+
+class Conclusion(Scene):
+    def construct(self):
+
+        # reading image file
+        conclusionImage = ImageMobject("ml_trojan_horse.png").scale(0.75)
+        conclusionImage.move_to(ORIGIN)
+
+        self.play(FadeIn(conclusionImage))
+
+        self.wait(1)
+
+class Conclusion2(Scene):
+    def construct(self):
+
+        # reading image file
+        conclusionImage = ImageMobject("ml_trojan_horse.png").scale(0.75)
+        conclusionImage.move_to(ORIGIN)
+
+        self.add(conclusionImage)
+
+        myQuote = Text("\"All concepts in science and engineering are simpler and similar,", font_size=24, weight=BOLD).set_color(text_color).move_to(DOWN*2)
+        myQuote2 = Text("Only their names might appear scary.\" ", font_size=24, weight=BOLD).set_color(text_color).move_to(myQuote.get_bottom()+DOWN*0.5)
+        myQuote3 = Text("- Ramkumar", font_size=24, weight=BOLD).set_color(text_color).move_to(myQuote2.get_bottom()+DOWN*0.5+RIGHT*3.0)
+
+        self.play(conclusionImage.animate.scale(0.5).move_to(UP*2+LEFT*3.5))
+
+        self.play(Write(myQuote))
+        self.play(Write(myQuote2))
+        self.play(Write(myQuote3))
+
+        self.wait(1)
+
+class Conclusion3(Scene):
+    def construct(self):
+
+        # reading image file
+        conclusionImage = ImageMobject("ml_trojan_horse.png").scale(0.75)
+        conclusionImage.move_to(ORIGIN)
+        conclusionImage.scale(0.5).move_to(UP*2+LEFT*3.5)
+
+        self.add(conclusionImage)
+
+        myQuote = Text("\"All concepts in science and engineering are simpler and similar,", font_size=24, weight=BOLD).set_color(text_color).move_to(DOWN*2)
+        myQuote2 = Text("Only their names might appear scary.\" ", font_size=24, weight=BOLD).set_color(text_color).move_to(myQuote.get_bottom()+DOWN*0.5)
+        myQuote3 = Text("- Ramkumar", font_size=24, weight=BOLD).set_color(text_color).move_to(myQuote2.get_bottom()+DOWN*0.5+RIGHT*3.0)
+
+        self.add(myQuote, myQuote2, myQuote3)
+
+        thankyou = Text("Thank you!", font_size=34, weight=BOLD).set_color(blue_color).move_to(UP+RIGHT*2)
+        self.play(Write(thankyou))
+
+        self.wait(1)
 
 #==============================================================================
