@@ -3071,7 +3071,7 @@ class DeepNetworks1(Scene):
 
         self.add(NNVectorForm4,graphicalText, inpGroup, neuron1Circle,
                  neuron2Circle, neuron3Circle, neuron4Circle, outputVar,
-                 arrow5, line1Group, line2Group, neuron5Circle, outputVar2, arrow6, line3Group, line4Group)
+                 arrow5, line1Group, neuron5Circle, outputVar2, arrow6, line3Group, line4Group)
 
         titleText2 = Text("Deep Networks", font_size=34)
         titleText2.set_color(blue_color)
@@ -3082,7 +3082,7 @@ class DeepNetworks1(Scene):
                   FadeOut(neuron1Circle), FadeOut(neuron2Circle),
                   FadeOut(neuron3Circle), FadeOut(neuron4Circle),
                   FadeOut(outputVar), FadeOut(arrow5), FadeOut(line1Group),
-                  FadeOut(line2Group), FadeOut(neuron5Circle),
+                  FadeOut(neuron5Circle),
                   FadeOut(outputVar2), FadeOut(arrow6), FadeOut(line3Group),
                   FadeOut(line4Group))
         self.play(Transform(titleText, titleText2))
