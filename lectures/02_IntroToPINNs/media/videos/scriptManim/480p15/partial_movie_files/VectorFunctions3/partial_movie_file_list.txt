@@ -1,5 +1,5 @@
 # This file is used internally by FFMPEG.
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/2684412425_936615571_3917660591.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/660496219_2926916166_2675780684.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/660496219_1596571177_88704200.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/660496219_1432596116_373318084.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/3684191355_3925861067_3917660591.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/1360277161_617852777_2675780684.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/1360277161_2854120350_88704200.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions3/1360277161_1432596116_1570661478.mp4'

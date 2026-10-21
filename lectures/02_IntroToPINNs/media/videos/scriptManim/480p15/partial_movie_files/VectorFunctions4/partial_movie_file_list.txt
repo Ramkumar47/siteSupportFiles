@@ -1,7 +1,6 @@
 # This file is used internally by FFMPEG.
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/2684412425_526690966_3119325808.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/660496219_2872842549_2519081669.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/660496219_2522391889_2013435294.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/660496219_1432596116_2295891112.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/660496219_1493661365_1719353116.mp4'
-file 'file:/home/ramkumar/Repositories/Github_Repositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/660496219_1432596116_2464384906.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/3684191355_3479218995_3119325808.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/1360277161_2364698678_727450706.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/1360277161_588349089_1249246795.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/1360277161_1432596116_2295891112.mp4'
+file 'file:/home/ramkumar/Repositories/gitHubRepositories/siteSupportFiles/lectures/02_IntroToPINNs/media/videos/scriptManim/480p15/partial_movie_files/VectorFunctions4/1360277161_1432596116_849736281.mp4'

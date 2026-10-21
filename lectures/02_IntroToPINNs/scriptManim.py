@@ -2349,12 +2349,12 @@ class VectorFunctions3(Scene):
         scalarFunctionText.set_color(red_color)
         scalarFunctionText.move_to(UP*1.0+LEFT*4.0)
 
-        NN2DExpressionN3_1 = MathTex(r"f(x,y) \approx \hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
+        NN2DExpressionN3_1 = MathTex(r"\hat{f}(x,y) =  w_{1,1}^{(2)} \sigma(w_{1,1}^{(1)}x + w_{1,2}^{(1)}y +b_1^{(1)}) ").scale(0.75)
         NN2DExpressionN3_1.set_color(text_color).move_to(UP*1.25+LEFT*2.75)
         NN2DExpressionN3_2 = MathTex(r"+ \ \ w_{1,2}^{(2)} \sigma(w_{2,1}^{(1)}x + w_{2,2}^{(1)}y +b_2^{(1)})").scale(0.75)
-        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3.75)
+        NN2DExpressionN3_2.set_color(text_color).move_to(UP*1.25+RIGHT*3)
         NN2DExpressionN3_3 = MathTex(r"+ \ \ w_{1,3}^{(2)} \sigma(w_{3,1}^{(1)}x + w_{3,2}^{(1)}y +b_3^{(1)})").scale(0.75)
-        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*3.25)
+        NN2DExpressionN3_3.set_color(text_color).move_to(UP*0.25+RIGHT*2.5)
         NN2DExpressionN3 = VGroup(NN2DExpressionN3_1, NN2DExpressionN3_2, NN2DExpressionN3_3)
         NN2DExpressionN3.move_to(DOWN)
 
@@ -2403,7 +2403,7 @@ class VectorFunctions4(Scene):
         underline3.shift(LEFT*1.6)
 
         self.play(Create(underline1), Create(underline2), Create(underline3))
-        self.wait(2)
+        self.wait(4)
         self.play(Uncreate(underline1), Uncreate(underline2), Uncreate(underline3))
         self.wait(1)
 
