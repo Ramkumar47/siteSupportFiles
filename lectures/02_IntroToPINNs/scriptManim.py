@@ -4340,8 +4340,10 @@ class HyperParameterTuning(Scene):
 
         NNgroup = VGroup(inpGroup, neuron1Circle, neuron2Circle, neuron3Circle, neuron4Circle,
                         outputVar, arrow5, line1Group,
-                        neuron5Circle, outputVar2, arrow6, line3Group,
+                        neuron5Circle, outputVar2, arrow6,
                         neuron1CircleNew, neuron2CircleNew, neuron3CircleNew, line1GroupNew, line3GroupNew)
+
+        self.add(NNgroup)
 
         # self.play(FadeOut(line3Group), FadeOut(line4Group),
         #           neuron5Circle.animate.shift(RIGHT*2.5),
@@ -5828,7 +5830,7 @@ class PhysicsInformation10(Scene):
         totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
         totalLossEqn.set_color(text_color)
         totalLossEqn.move_to(totalLossText.get_bottom()+DOWN*0.5)
-        omegaText = MathTex(r"\omega \in [0,1] \text{- weighting scale - hyperparameter}").scale(0.75)
+        omegaText = MathTex(r"\omega \in [0,1] \text{- loss weightage scale - hyperparameter}").scale(0.75)
         omegaText.set_color(text_color)
         omegaText.move_to(totalLossEqn.get_bottom()+DOWN*0.5)
 
@@ -5889,7 +5891,7 @@ class PINN(Scene):
         totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
         totalLossEqn.set_color(text_color)
         totalLossEqn.move_to(totalLossText.get_bottom()+DOWN*0.5)
-        omegaText = MathTex(r"\omega \in [0,1] \text{- weighting scale - hyperparameter}").scale(0.75)
+        omegaText = MathTex(r"\omega \in [0,1] \text{- loss weightage scale - hyperparameter}").scale(0.75)
         omegaText.set_color(text_color)
         omegaText.move_to(totalLossEqn.get_bottom()+DOWN*0.5)
 
