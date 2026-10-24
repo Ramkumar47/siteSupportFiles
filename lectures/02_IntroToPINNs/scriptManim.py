@@ -434,7 +434,7 @@ class DrawingSigmoidComponents2(Scene):
 
         self.wait(1)
 
-class TransformingGraphsToEqns(Scene):
+class DrawingSigmoidComponents3(Scene):
     def construct(self):
         # Create axes
         axes = Axes(
@@ -510,8 +510,164 @@ class TransformingGraphsToEqns(Scene):
 
         self.add(axes, x_label, y_label, complex_sine_curve,equal_sign,
                  plus_sign1, plus_sign2, plus_sign3, new_axes1, new_axes2,
+                 new_axes3, new_axes4,text1,
+                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4,
+                 text2)
+
+        self.play(Create(approximatedCurve))
+        self.play(Write(approximatedCurveText))
+
+        self.wait(1)
+
+class TransformingGraphsToEqns(Scene):
+    def construct(self):
+        # Create axes
+        axes = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+
+        # Create labels for the axes
+        x_label = axes.get_x_axis_label("x")
+        y_label = axes.get_y_axis_label("y")
+        x_label.set_color(text_color)
+        y_label.set_color(text_color)
+
+        # drawing a complex sine curve
+        complex_sine_curve = axes.plot(lambda x: 1.5+0.6*np.sin(2*np.pi*x)+0.4*np.sin(2*np.pi*2.3*x+0.5)+0.3*np.sin(2*np.pi*4.7*x+1.2)+0.2*np.sin(2*np.pi*7*x), color=red_color)
+
+        # scale down the axes and curve
+        axes.scale(0.5).to_edge(UL)
+        complex_sine_curve.scale(0.5).to_edge(UL)
+        x_label.move_to(LEFT).scale(0.75)
+        y_label.move_to(UP*3+LEFT*4.5).scale(0.75)
+
+        # writing equal sign
+        equal_sign = MathTex("=").scale(1.5).next_to(axes, RIGHT, buff=1.5)
+        equal_sign.set_color(text_color)
+
+        # writing plus symbols below each axes
+        plus_sign1 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-1.5*UP, buff=0.5)
+        plus_sign1.set_color(text_color)
+        plus_sign2 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-5.0*UP, buff=0.5)
+        plus_sign2.set_color(text_color)
+        plus_sign3 = MathTex("+").scale(1.0).next_to(equal_sign, 1.5*RIGHT-9.0*UP, buff=0.5)
+        plus_sign3.set_color(text_color)
+
+        # drawing new axes on the right with a new sine wave
+        new_axes1 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes1.next_to(axes, 0.5*RIGHT-2.75*UP, buff=-2).scale(0.25)
+        new_axes2 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes2.next_to(new_axes1, DOWN, buff=-2).scale(0.25)
+        new_axes3 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes3.next_to(new_axes2, DOWN, buff=-2).scale(0.25)
+        new_axes4 = Axes(
+            x_range=xrange,
+            y_range=yrange,
+            axis_config={"color": blue_color},
+        )
+        new_axes4.next_to(new_axes3, DOWN, buff=-2).scale(0.25)
+
+        sigmoidCurve1 = new_axes1.plot(lambda x: 0.5+1/(1+np.exp(-2*x)), color=green_color)
+        sigmoidCurve2 = new_axes2.plot(lambda x: 0.5+1/(1+np.exp(-4*x)), color=green_color)
+        sigmoidCurve3 = new_axes3.plot(lambda x: 0.5+1-1/(1+np.exp(-5.5*x)), color=green_color)
+        sigmoidCurve4 = new_axes4.plot(lambda x: 0.5+1-1/(1+np.exp(-10*x+4)), color=green_color)
+
+        text1 = Text("Weighted sum of non-periodic functions?", font_size=24).next_to(axes, DOWN, buff=2.5)
+        text1.set_color(text_color)
+        text1.shift(UP*0.5)
+
+        text2 = Text("Yes! with more components", font_size=24).next_to(axes, DOWN, buff=2.5)
+        text2.set_color(blue_color)
+
+        # sigmoid approximated function
+        w1 = np.array([7.904774831607667,
+        15.555606220842723,
+        8.849560759809007,
+        0.4060334491975646,
+        23.220853886227527,
+        20.578547447163764,
+        16.960072803525353,
+        0.08036845322818938,
+        0.06092328758144802,
+        0.20762347385737728,
+        15.236458922365083,
+        1.9430135875617367,
+        0.060896687060385764,
+        8.297477263747373,
+        -17.607003361301523,
+        11.084038720464164,
+        -27.09809774540324,
+        37.695642921124794,
+        0.134597622725519,
+        0.11571079759176531])
+
+        b1 = np.array([-16.93095481754966,
+        12.874763201482793,
+        0.852026717173249,
+        -5.703596150408853,
+        -18.657268778680073,
+        -43.648851524274114,
+        -25.576928537829872,
+        -3.1806959910038954,
+        -3.0738218924316474,
+        -3.6274146590505065,
+        -11.598009712525604,
+        -5.948203393036038,
+        -3.073805539885386,
+        -12.74633409868673,
+        -27.92507907408978,
+        18.121646822617038,
+        -23.789540315785246,
+        1.3232550175396742,
+        -3.3954409565763743,
+        -3.3282951604707667] )
+
+        w2 = np.array([-5.403565331626049,
+        -4.180395736462673,
+        -2.2241824222253337,
+        0.18344424642657994,
+        5.7574352270266225,
+        4.215861958293315,
+        -6.05075132787331,
+        0.09163010196618951,
+        0.07496841167410498,
+        0.12947227837740194,
+        -6.12270110889641,
+        -0.4547154788106706,
+        0.07494264505765852,
+        6.870322117620125,
+        5.75767061356995,
+        5.631610785234858,
+        -4.441941952810549,
+        2.5344913953069788,
+        0.12121201415610751,
+        0.11327788759993686])
+        def sigmoid(x):
+            return 1/(1+np.exp(-x))
+
+        approximatedCurve = axes.plot(lambda x: np.sum(w2*sigmoid(w1*x+b1)) , color=green_color)
+        approximatedCurveText = Text("with 20 basis functions", font_size=24).next_to(axes, DOWN, buff=0.5)
+        approximatedCurveText.set_color(green_color)
+
+        self.add(axes, x_label, y_label, complex_sine_curve,equal_sign,
+                 plus_sign1, plus_sign2, plus_sign3, new_axes1, new_axes2,
                  new_axes3, new_axes4,text1,text2,
-                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4)
+                 sigmoidCurve1, sigmoidCurve2, sigmoidCurve3, sigmoidCurve4,
+                    approximatedCurve, approximatedCurveText)
 
         fGroup = VGroup(axes, complex_sine_curve,x_label, y_label)
         fOfX = MathTex(r"f(x)").scale(1)
@@ -531,6 +687,7 @@ class TransformingGraphsToEqns(Scene):
         sOfX4.set_color(text_color).move_to(s4Group.get_center())
 
         # transforming the axes to f(x) equation and disappearing the complex sine curve
+        self.play(FadeOut(approximatedCurveText),FadeOut(approximatedCurve))
         self.play(ReplacementTransform(fGroup, fOfX))
         self.wait(1)
         self.play(ReplacementTransform(s1Group, sOfX1),
