@@ -5935,6 +5935,7 @@ class PINN2(Scene):
             "Data-augmented PINNs",
             "Solver PINNs",
             "Inverse PINNs",
+            "Parametric PINNs",
             font_size=30,
             dot_scale_factor=1.0,
         ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
@@ -5966,27 +5967,428 @@ class PINN3(Scene):
             "Data-augmented PINNs",
             "Solver PINNs",
             "Inverse PINNs",
+            "Parametric PINNs",
             font_size=30,
             dot_scale_factor=1.0,
         ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
 
         self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList)
 
+        # partly fading all but first entry in the list
+        gray_color = "#acb0be"
+        self.play(FadeToColor(PINNList[1:], color=gray_color),)
+
+        DataAugmentedPINNSchematic = SVGMobject("supportingFiles/02_PINNExamples/01_dataAugmentedPINNs/schematic.svg").scale(1.75)
+        DataAugmentedPINNSchematic.move_to(DOWN*1.5+RIGHT*2.0)
+        DataAugmentedPINNText = Text("Mapping velocity field with sparse data", font_size=24).set_color(text_color).move_to(DataAugmentedPINNSchematic.get_top()+UP*0.5)
+
+        self.play(Create(DataAugmentedPINNSchematic))
+        self.play(Write(DataAugmentedPINNText))
+
+
+        self.wait(1)
+
+class PINN4(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            "Parametric PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        # partly fading all but first entry in the list
+        gray_color = "#acb0be"
+        PINNList[1:].set_color(gray_color)
+        # self.play(FadeToColor(PINNList[1:], color=gray_color),)
+
+        DataAugmentedPINNSchematic = SVGMobject("supportingFiles/02_PINNExamples/01_dataAugmentedPINNs/schematic.svg").scale(1.75)
+        DataAugmentedPINNSchematic.move_to(DOWN*1.5+RIGHT*2.0)
+        DataAugmentedPINNText = Text("Mapping velocity field with sparse data", font_size=24).set_color(text_color).move_to(DataAugmentedPINNSchematic.get_top()+UP*0.5)
+
+        self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList,
+                 DataAugmentedPINNSchematic, DataAugmentedPINNText)
+
+        solverPinnImage = ImageMobject("supportingFiles/02_PINNExamples/SolverPINN.png").scale(0.75)
+        solverPinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        solverPinnText = Text("Solving 1D Burgers equation", font_size=24).set_color(text_color).move_to(solverPinnImage.get_top()+UP*0.5)
+        solverPinnText2 = Text("Raissi et al. 2019", font_size=18).set_color(text_color).move_to(solverPinnText.get_right()+RIGHT*1.5)
+
+        self.play(FadeOut(DataAugmentedPINNSchematic), FadeOut(DataAugmentedPINNText),
+                    FadeToColor(PINNList[0], color=gray_color),
+                    FadeToColor(PINNList[1], color=text_color),
+                  FadeToColor(PINNList[2:], color=gray_color))
+
+        self.wait(1)
+        self.play(FadeIn(solverPinnImage))
+        self.play(Write(solverPinnText))
+        self.play(Write(solverPinnText2))
+
+        self.wait(1)
+
+class PINN5(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            "Parametric PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        # partly fading all but first entry in the list
+        gray_color = "#acb0be"
+        PINNList[0].set_color(gray_color)
+        PINNList[2:].set_color(gray_color)
+        # self.play(FadeToColor(PINNList[1:], color=gray_color),)
+
+        solverPinnImage = ImageMobject("supportingFiles/02_PINNExamples/SolverPINN.png").scale(0.75)
+        solverPinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        solverPinnText = Text("Solving 1D Burgers equation", font_size=24).set_color(text_color).move_to(solverPinnImage.get_top()+UP*0.5)
+        solverPinnText2 = Text("Raissi et al. 2019", font_size=18).set_color(text_color).move_to(solverPinnText.get_right()+RIGHT*1.5)
+
+        self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList,
+                solverPinnImage, solverPinnText, solverPinnText2)
+
+        self.play(FadeOut(solverPinnImage), FadeOut(solverPinnText),
+                  FadeOut(solverPinnText2),
+                  FadeToColor(PINNList[0:2], color=gray_color),
+                    FadeToColor(PINNList[2], color=text_color),
+                  FadeToColor(PINNList[3:], color=gray_color))
+
+        inversePinnImage = ImageMobject("supportingFiles/02_PINNExamples/inversePINNs.png").scale(0.75)
+        inversePinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        inversePinnText = Text("Estimating fluid parameters from velocity field", font_size=24).set_color(text_color).move_to(inversePinnImage.get_top()+UP*0.5)
+        inversePinnText2 = Text("Raissi et al. 2019", font_size=18).set_color(text_color).move_to(inversePinnText.get_bottom()+DOWN*0.2+RIGHT*1.5)
+
+        self.wait(1)
+        self.play(FadeIn(inversePinnImage))
+        self.play(Write(inversePinnText))
+        self.play(Write(inversePinnText2))
+
+        self.wait(1)
+
+class PINN6(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            "Parametric PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        # partly fading all but first entry in the list
+        gray_color = "#acb0be"
+        PINNList[0:2].set_color(gray_color)
+        PINNList[3].set_color(gray_color)
+        # self.play(FadeToColor(PINNList[1:], color=gray_color),)
+
+        inversePinnImage = ImageMobject("supportingFiles/02_PINNExamples/inversePINNs.png").scale(0.75)
+        inversePinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        inversePinnText = Text("Estimating fluid parameters from velocity field", font_size=24).set_color(text_color).move_to(inversePinnImage.get_top()+UP*0.5)
+        inversePinnText2 = Text("Raissi et al. 2019", font_size=18).set_color(text_color).move_to(inversePinnText.get_bottom()+DOWN*0.2+RIGHT*1.5)
+
+        self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList,
+                inversePinnImage, inversePinnText, inversePinnText2)
+
+        self.play(FadeOut(inversePinnImage),
+                  FadeOut(inversePinnText), FadeOut(inversePinnText2),
+                  FadeToColor(PINNList[0:3], color=gray_color),
+                    FadeToColor(PINNList[3], color=text_color))
+
+        parametricPinnImage = SVGMobject("supportingFiles/02_PINNExamples/02_parametricPINNs/schematic.svg").scale(1.)
+        parametricPinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        parametricPinnText = Text("Generalizing estimations over viscosity", font_size=24).set_color(text_color).move_to(parametricPinnImage.get_top()+UP*0.5)
+
+        self.wait(1)
+        self.play(FadeIn(parametricPinnImage))
+        self.play(Write(parametricPinnText))
+
+        self.wait(1)
+
+class PINN7(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # PINN types
+        PINNTypesText = Text("PINNs types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        PINNList = BulletedList(
+            "Data-augmented PINNs",
+            "Solver PINNs",
+            "Inverse PINNs",
+            "Parametric PINNs",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(PINNTypesText, DOWN, aligned_edge=LEFT)
+
+        # partly fading all but first entry in the list
+        gray_color = "#acb0be"
+        PINNList[0:3].set_color(gray_color)
+        PINNList[3].set_color(text_color)
+        # self.play(FadeToColor(PINNList[1:], color=gray_color),)
+
+        parametricPinnImage = SVGMobject("supportingFiles/02_PINNExamples/02_parametricPINNs/schematic.svg").scale(1.)
+        parametricPinnImage.move_to(DOWN*1.5+RIGHT*2.0)
+        parametricPinnText = Text("Generalizing estimations over viscosity", font_size=24).set_color(text_color).move_to(parametricPinnImage.get_top()+UP*0.5)
+
+        self.add(PINNsText, totalLossEqn, PINNTypesText, PINNList,
+                parametricPinnImage, parametricPinnText)
+
+        self.play(FadeOut(parametricPinnImage), FadeOut(parametricPinnText),
+                  Unwrite(PINNList))
+
         # Physics Loss types
-        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+RIGHT*2.5)
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
         physicsLossList = BulletedList(
             "Differential equation loss",
             "Variational loss",
-            "Algebriac loss",
+            "Algebraic loss",
             "Inequality loss",
             font_size=30,
             dot_scale_factor=1.0,
         ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
 
-        self.play(Write(physicsLossTypesText))
+        self.play(Transform(PINNTypesText, physicsLossTypesText))
         self.play(Write(physicsLossList))
 
         self.wait(1)
+
+class PINN8(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # Physics Loss types
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        physicsLossList = BulletedList(
+            "Differential equation loss",
+            "Variational loss",
+            "Algebraic loss",
+            "Inequality loss",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
+
+        self.add(PINNsText, totalLossEqn, physicsLossTypesText, physicsLossList)
+
+        DElossText = Text("ODEs and PDEs inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[0].get_right() + RIGHT*4.0)
+        DELine = Line(start=physicsLossList[0].get_right() + RIGHT*0.5, end=DElossText.get_left() + LEFT*0.5, color=text_color)
+
+        self.play(Write(DElossText),Create(DELine))
+
+        self.wait(1)
+
+class PINN9(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # Physics Loss types
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        physicsLossList = BulletedList(
+            "Differential equation loss",
+            "Variational loss",
+            "Algebraic loss",
+            "Inequality loss",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
+
+        DElossText = Text("ODEs and PDEs inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[0].get_right() + RIGHT*4.0)
+        DELine = Line(start=physicsLossList[0].get_right() + RIGHT*0.5, end=DElossText.get_left() + LEFT*0.5, color=text_color)
+
+        self.add(PINNsText, totalLossEqn, physicsLossTypesText, physicsLossList,
+                 DElossText, DELine)
+
+        VElossText = Text("integral equations inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[1].get_right() + RIGHT*5.5)
+        VELine = Line(start=physicsLossList[1].get_right() + RIGHT*1.75, end=VElossText.get_left() + LEFT*0.5, color=text_color)
+
+
+        self.play(Write(VElossText),Create(VELine))
+
+        self.wait(1)
+
+class PINN10(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # Physics Loss types
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        physicsLossList = BulletedList(
+            "Differential equation loss",
+            "Variational loss",
+            "Algebraic loss",
+            "Inequality loss",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
+
+        DElossText = Text("ODEs and PDEs inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[0].get_right() + RIGHT*4.0)
+        DELine = Line(start=physicsLossList[0].get_right() + RIGHT*0.5, end=DElossText.get_left() + LEFT*0.5, color=text_color)
+
+        VElossText = Text("integral equations inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[1].get_right() + RIGHT*5.5)
+        VELine = Line(start=physicsLossList[1].get_right() + RIGHT*1.75, end=VElossText.get_left() + LEFT*0.5, color=text_color)
+
+        self.add(PINNsText, totalLossEqn, physicsLossTypesText, physicsLossList,
+                 DElossText, DELine, VElossText, VELine)
+
+        AElossText = Text("Algebraic expressions as constraints", font_size=18,).set_color(text_color).move_to(physicsLossList[2].get_right() + RIGHT*5.5)
+        AELine = Line(start=physicsLossList[2].get_right() + RIGHT*1.95, end=AElossText.get_left() + LEFT*0.5, color=text_color)
+
+        self.play(Write(AElossText),Create(AELine))
+
+        self.wait(1)
+
+class PINN11(Scene):
+    def construct(self):
+
+        titleText = Text("Physics Informed Neural Networks", font_size=34)
+        titleText.set_color(blue_color)
+        titleText.move_to(UP*3.0)
+
+        self.add(titleText)
+
+        # total loss
+        totalLossEqn = MathTex(r"L = \omega L_D + (1-\omega)L_P").scale(0.75)
+        totalLossEqn.set_color(text_color)
+
+        PINNsText = Text("Neural networks with : ", font_size=24).set_color(text_color).move_to(2*UP+LEFT*2.0)
+        totalLossEqn.move_to(PINNsText.get_right()+RIGHT*2.0)
+
+        # Physics Loss types
+        physicsLossTypesText = Text("Physics Loss types", font_size=24, weight=BOLD).set_color(blue_color).move_to(UP*0.5+LEFT*4.5)
+        physicsLossList = BulletedList(
+            "Differential equation loss",
+            "Variational loss",
+            "Algebraic loss",
+            "Inequality loss",
+            font_size=30,
+            dot_scale_factor=1.0,
+        ).set_color(text_color).next_to(physicsLossTypesText, DOWN, aligned_edge=LEFT)
+
+        DElossText = Text("ODEs and PDEs inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[0].get_right() + RIGHT*4.0)
+        DELine = Line(start=physicsLossList[0].get_right() + RIGHT*0.5, end=DElossText.get_left() + LEFT*0.5, color=text_color)
+
+        VElossText = Text("integral equations inside loss function.", font_size=18,).set_color(text_color).move_to(physicsLossList[1].get_right() + RIGHT*5.5)
+        VELine = Line(start=physicsLossList[1].get_right() + RIGHT*1.75, end=VElossText.get_left() + LEFT*0.5, color=text_color)
+
+        AElossText = Text("Algebraic expressions as constraints", font_size=18,).set_color(text_color).move_to(physicsLossList[2].get_right() + RIGHT*5.5)
+        AELine = Line(start=physicsLossList[2].get_right() + RIGHT*1.95, end=AElossText.get_left() + LEFT*0.5, color=text_color)
+
+        self.add(PINNsText, totalLossEqn, physicsLossTypesText, physicsLossList,
+                 DElossText, DELine, VElossText, VELine, AElossText, AELine)
+
+        IneqlossText = Text("Impose exponential loss value if, say,", font_size=18,).set_color(text_color).move_to(physicsLossList[3].get_right() + RIGHT*5.5)
+        IneqLine = Line(start=physicsLossList[3].get_right() + RIGHT*1.9, end=IneqlossText.get_left() + LEFT*0.5, color=text_color)
+        IneqMath = MathTex(r"\text{if } p_s > p_0, \text{ then } L_P = e^{p_s-p_0}").scale(0.65)
+        IneqMath.set_color(text_color)
+        IneqMath.move_to(IneqlossText.get_bottom()+DOWN*0.5)
+
+        self.play(Write(IneqlossText),Create(IneqLine))
+        self.play(Write(IneqMath))
+
+
+        self.wait(1)
+
 
 class Conclusion(Scene):
     def construct(self):
