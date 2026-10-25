@@ -6438,8 +6438,15 @@ class Conclusion3(Scene):
 
         self.add(myQuote, myQuote2, myQuote3)
 
-        thankyou = Text("Thank you!", font_size=34, weight=BOLD).set_color(blue_color).move_to(UP+RIGHT*2)
+        thankyou = Text("Thank you!", font_size=34, weight=BOLD).set_color(blue_color).move_to(2*UP+RIGHT*2)
+
+        contactMe = Text("Contact me at", font_size=24, weight=BOLD).set_color(text_color).move_to(UP*0.5+RIGHT*2)
+        contactMe2 = Text("ramkumars.24@res.iist.ac.in", font_size=24, weight=BOLD).set_color(blue_color).move_to(contactMe.get_bottom()+DOWN*0.5)
+
         self.play(Write(thankyou))
+        self.wait(1)
+        self.play(Write(contactMe))
+        self.play(Write(contactMe2))
 
         self.wait(1)
 
